@@ -73,7 +73,8 @@
     },
     computed: {
         status() {
-            return this.$store.state.shipStore.state.bill;
+            // return this.$store.state.shipStore.state.bill;
+            return 'hi';
             // console.log(this.$store.state.shipStore)
         }
     },
@@ -101,8 +102,6 @@
         this.$navigateTo(component, {
           clearHistory: true
         });
-        // console.log(this.$store.state.bills)
-        // this.$store.state.shipStore.state.bill = 'Tấn Tiền'
         utils.closeDrawer();
       }
     }

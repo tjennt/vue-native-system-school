@@ -67,11 +67,14 @@
                 }
             };
         },
+        mounted() {
+            this.$store.commit("setChangeLogin");
+        },
         methods: {
             testLogin() {
-                this.login = this.$store
+                // this.login = this.$store
                 // this.alert(this.$store.gobal)
-                console.log(this.$store.state.gobal.state.checkLogin)
+                console.log(this.$store.state.checkLogin)
             },
             toggleForm() {
                 this.isLoggingIn = !this.isLoggingIn;
@@ -95,6 +98,7 @@
 
             login() {
                 this.processing = false;
+                this.$store.commit("setChangeLogin");
                 this.$navigateTo(Home, { clearHistory: true });
             },
 

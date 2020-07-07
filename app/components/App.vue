@@ -17,8 +17,12 @@
     data() {
       return {
         transition: new SlideInOnTopTransition(),
-        gesturesEnabled: true,
         selectedPage: ''
+      }
+    },
+    computed: {
+      gesturesEnabled() {
+        return this.$store.state.checkLogin
       }
     }
   }
