@@ -9,7 +9,7 @@ import DrawerContent from "./components/DrawerContent";
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 import store from './store';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 Vue.use(RadSideDrawer);
 Vue.use(VueDevtools, { host: '192.168.1.42' });
 
@@ -26,6 +26,5 @@ new Vue({
           ]
         )
     },
-
     store
 }).$start();

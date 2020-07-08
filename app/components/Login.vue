@@ -2,11 +2,17 @@
     <Page actionBarHidden="true">
         <FlexboxLayout class="page">
             <StackLayout class="form">
+                <!-- IMAGE AND NAME APP -->
                 <Image class="logo" src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-9/50398018_1265797996923033_3309203887033942016_n.jpg?_nc_cat=108&_nc_sid=174925&_nc_ohc=Hz4Sh2AqozsAX_OLM_Y&_nc_ht=scontent.fsgn5-5.fna&oh=8c3daef781766fa9336c743dffa76b94&oe=5F16D4BF"></Image>
-                <Label class="header" text="PROQ TEAM"></Label>
-                <Label class="header" :text="Login"></Label>
+                <Label class="header" :text="nameApp"></Label>
 
+                    <!-- INFO ERROR -->
+                <Label v-show="errorActive" class="alert alert-danger" :text="errorText"></Label>
+
+                <!-- LAYOUT LOGIN,.. -->
                 <GridLayout rows="auto, auto, auto">
+                
+                    <!-- INPUT EMAIL -->
                     <StackLayout row="0" class="input-field">
                         <TextField class="input" hint="Email" :isEnabled="!processing"
                             keyboardType="email" autocorrect="false"
@@ -15,6 +21,7 @@
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout>
 
+                    <!-- INPUT PASSWORD -->
                     <StackLayout row="1" class="input-field">
                         <TextField class="input" ref="password" :isEnabled="!processing"
                             hint="Password" secure="true" v-model="user.password"
@@ -23,34 +30,39 @@
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout>
 
+                    <!-- IF REGISTER THEN SHOW -->
                     <StackLayout row="2" v-show="!isLoggingIn" class="input-field">
                         <TextField class="input" ref="confirmPassword" :isEnabled="!processing"
                             hint="Confirm password" secure="true" v-model="user.confirmPassword"
                             returnKeyType="done"></TextField>
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout>
-
                     <ActivityIndicator rowSpan="3" :busy="processing"></ActivityIndicator>
                 </GridLayout>
 
+                <!-- BUTTON LOGIN AND REGISTER -->
                 <Button :text="isLoggingIn ? 'Đăng nhập' : 'Đăng kí'" :isEnabled="!processing"
                     @tap="submit" class="btn btn-primary m-t-20"></Button>
-                <Button text="TESTLOGINa" @tap="testLogin()" class="btn btn-primary m-t-20"></Button>
+
+                <!-- FORGOT PASSWORD PROMORT  -->
                 <Label *v-show="isLoggingIn" text="Quên mật khẩu?"
                     class="login-label" @tap="forgotPassword()"></Label>
             </StackLayout>
 
+            <!-- DON'T REGISTER -->
             <Label class="login-label sign-up-label" @tap="toggleForm">
                 <FormattedString>
                     <Span :text="isLoggingIn ? 'Chưa có tài khoản?' : 'Trở lại đăng nhập'"></Span>
                     <Span :text="isLoggingIn ? ' Đăng kí' : ''" class="bold"></Span>
                 </FormattedString>
             </Label>
+            
         </FlexboxLayout>
     </Page>
 </template>
 
 <script>
+    import axios from "axios";
     import Home from "./Home";
     import * as utils from "~/shared/utils";
 
@@ -59,7 +71,8 @@
             return {
                 isLoggingIn: true,
                 processing: false,
-                Login: '',
+                errorActive: false,
+                errorText: 'Lỗi',
                 user: {
                     email: "tien@gmail.com",
                     password: "1",
@@ -68,18 +81,18 @@
             };
         },
         mounted() {
-            this.$store.commit("setChangeLogin");
+            this.$store.commit("setChangeLogin", false);
+            this.$store.commit("setToken", '');
+        },
+        computed: {
+            nameApp() {
+                return this.$store.state.nameApp;
+            }
         },
         methods: {
-            testLogin() {
-                // this.login = this.$store
-                // this.alert(this.$store.gobal)
-                console.log(this.$store.state.checkLogin)
-            },
             toggleForm() {
                 this.isLoggingIn = !this.isLoggingIn;
             },
-
             submit() {
                 if (!this.user.email || !this.user.password) {
                     this.alert(
@@ -87,7 +100,6 @@
                     );
                     return;
                 }
-
                 this.processing = true;
                 if (this.isLoggingIn) {
                     this.login();
@@ -95,14 +107,31 @@
                     this.register();
                 }
             },
-
             login() {
-                this.processing = false;
-                this.$store.commit("setChangeLogin");
-                this.$navigateTo(Home, { clearHistory: true });
+                axios.post('http://note.tantien.info/public/auth/login',{
+                    email: this.user.email,
+                    password: this.user.password
+                },
+                {headers: this.$store.state.authHeader})
+                .then(res => {
+                    let respon = JSON.parse(JSON.stringify(res.data));
+                    if(respon.Status != 200){
+                        this.processing = false;
+                        this.errorActive = true;
+                        this.errorText = respon.Message;
+                    }else{
+                        this.processing = false;
+                        this.errorActive = false;
+                        this.$store.commit("setChangeLogin", true);
+                        this.$store.commit("setToken", respon.Notification.Token);
+                        this.$navigateTo(Home, { clearHistory: true });
+                    }
+                }, error => {
+                    console.error(error);
+                });
             },
-
-            register() { 
+            register() {
+                // console.log(this.$store.state.authHeaderApi.Authorization);
                 if (this.user.password != this.user.confirmPassword) {
                     this.alert("Xác nhận mật khẩu không đúng");
                     this.processing = false;
@@ -112,7 +141,6 @@
                 this.alert("Đăng kí thành công.");
                 this.isLoggingIn = true;
             },
-
             forgotPassword() {
                 prompt({
                     title: "Quên mật khẩu",
@@ -220,5 +248,17 @@
     }
     .btn-primary:disabled {
         opacity: 0.5;
+    }
+    .alert {
+        width: 100%;
+        padding: 25px 15px;
+        color: #fff;
+        text-align: center;
+        font-size: 14pt;
+        border-radius: 20px;
+        margin-bottom: 25px;
+    }
+    .alert-danger {
+        background-color: #e54641;
     }
 </style>

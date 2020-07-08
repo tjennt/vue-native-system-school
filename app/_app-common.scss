@@ -35,6 +35,12 @@
         vertical-align: top;
         margin-top: 20%;
     }
+    &-notfound {
+        color: const(#e54641);
+        font-size: 20;
+        vertical-align: center;
+        horizontal-align: center;
+    }
 }
 
 // Drawer navigation custom styles

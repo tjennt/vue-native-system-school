@@ -7,7 +7,15 @@ const debug = 'debug';
 
 const store = new Vuex.Store({
     state: {
-      checkLogin: true
+      checkLogin: true,
+      nameApp: 'POLYTECHNIC',
+      authHeader: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      authHeaderApi: {
+        'Authorization': ''
+      }
     },
     actions: {
       chageLogin({ commit }) {
@@ -15,7 +23,8 @@ const store = new Vuex.Store({
       }
   },
   mutations: {
-    setChangeLogin: state => state.checkLogin = !state.checkLogin,
+    setChangeLogin: (state, status) => state.checkLogin = status,
+    setToken: (state, token) => state.authHeaderApi.Authorization = 'Bearer ' + token
   },
     strict: debug,
 });

@@ -1,5 +1,5 @@
 <template>
-    <Page class="page">
+    <Page class="page" @loaded="greet">
         <ActionBar class="action-bar">
             <NavigationButton ios:visibility="collapsed" icon="res://menu" @tap="onDrawerButtonTap"/>
             
@@ -11,25 +11,62 @@
         </ActionBar>
 
         <GridLayout class="page__content">
-            <Label class="page__content-icon fas" text.decode="&#xf015;"/>
-            <Label class="page__content-placeholder" :text="message"/>
+            <!-- <Label class="page__content-icon fas" text.decode="&#xf015;"/>
+            <Label class="page__content-placeholder" :text="message"/> -->
+            <Label v-show="dataIsNull" class="page__content-notfound" text="Không có dữ liệu sách"></Label>
+            <ScrollView v-show="dataIsNull == false">
+              <ListView for="book in books"
+                    style="height:auto">
+                <v-template>
+                    <FlexboxLayout flexDirection="row">
+                        <!-- <Image :src="country.imageSrc"
+                            class="thumb img-circle" /> -->
+                        <Label :text="book.name" class="t-12"
+                            style="width: 60%" />
+                        <Label :text="book.pages + ' trang'" class="t-12"
+                            style="width: 30%" />
+                        
+                    </FlexboxLayout>
+                </v-template>
+              </ListView>
+            </ScrollView>
         </GridLayout>
     </Page>
 </template>
 
 <script>
+  import axios from "axios";
   import * as utils from "~/shared/utils";
   import SelectedPageService from "../shared/selected-page-service";
 
   export default {
     data(){
       return {
-        home: 'Trang Chủ'
+        home: 'Trang Chủ',
+        dataIsNull: false,
+        books: []
       }
     },
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
-      // console.log(SelectedPageService)
+
+      // GET BOOKS
+      axios.get('http://note.tantien.info/public/api/books', {
+        headers: this.$store.state.authHeaderApi
+      })
+      .then(res=> {
+          // console.log(res)
+          let respon = JSON.parse(JSON.stringify(res.data));
+          if(respon.Status !== 200){
+            this.dataIsNull = true;
+            return;
+          }
+          this.dataIsNull = false;
+          this.books = respon.Notification.Books;
+      })
+      .catch(err=> {
+          console.log(err)
+      })
     },
     computed: {
       message() {
