@@ -1,4 +1,5 @@
 @import "~@nativescript/theme/core";
+// @import "~@nativescript/theme/default";
 @import "~@nativescript/theme/blue";
 
 // Place any CSS rules you want to apply on both iOS and Android here.
@@ -50,4 +51,37 @@
 
 .action-bar {
     background-color: #2a4054;
+}
+
+.header-wit {
+    background-color: #2a4054;
+    padding: 25;
+    text-align: center;
+}
+
+.header-wit {
+    &-text,
+    &-footer {
+        color: const(#fff);
+    }
+    &-text {
+        font-size: 20;
+    }
+}
+
+.selected {
+    background-color: rgba(42,64,84, 0.2);
+}
+
+.menu-wit {
+    &-icon,
+    &-text {
+        text-align: center;
+    }
+    &-icon {
+        font-size: 30;
+    }
+    &-text {
+        font-size: 10;
+    }
 }

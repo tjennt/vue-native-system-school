@@ -95,9 +95,9 @@
             },
             submit() {
                 if (!this.user.email || !this.user.password) {
-                    this.alert(
-                        "Please provide both an email address and password."
-                    );
+                    this.processing = false;
+                    this.errorActive = true;
+                    this.errorText = "Vui lòng nhập đầy đủ thông tin";
                     return;
                 }
                 this.processing = true;
@@ -108,7 +108,8 @@
                 }
             },
             login() {
-                axios.post('http://note.tantien.info/public/auth/login',{
+                let login = this.domain + 'public/auth/login';
+                axios.post(login,{
                     email: this.user.email,
                     password: this.user.password
                 },

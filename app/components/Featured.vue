@@ -35,7 +35,7 @@
     },
     computed: {
       message() {
-        return "<!-- Page content goes here -->";
+        return this.domain;
       }
     },
     methods: {

@@ -1,57 +1,65 @@
 <template lang="html">
     <GridLayout rows="auto, *" class="nt-drawer__content">
-        <StackLayout row="0" class="nt-drawer__header">
-            <Image class="nt-drawer__header-image fas t-36" src.decode="font://&#xf2bd;"/>
-            <Label class="nt-drawer__header-brand" :text="status"/>
-            <Label class="nt-drawer__header-footnote" text="wit@mail.com"/>
+        <StackLayout row="0" class="header-wit">
+            <Image class="nt-drawer__header-image" src="https://scontent-xsp1-2.xx.fbcdn.net/v/t1.0-9/104869375_1750187698484058_4901889475050639470_n.jpg?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=yvbFXzELaDEAX_nTgo0&_nc_ht=scontent-xsp1-2.xx&oh=5a453bc22bda37e34145dea8a11f4a92&oe=5F2CA9BE"/>
+            <Label class="header-wit-text" :text="status"/>
+            <Label class="header-wit-footer" text="Quản trị viên"/>
         </StackLayout>
 
         <ScrollView row="1" class="nt-drawer__body">
+            <!-- START MENU -->
             <StackLayout>
-                <GridLayout columns="auto, *"
-                            :class="'nt-drawer__list-item' + (selectedPage === 'Home' ? ' -selected': '')"
+              <StackLayout :class="'' + (selectedPage === 'Home' ? ' selected': '')"
+                            @tap="onNavigationItemTap(Home)"
+              >
+                  <Label text.decode="&#xf015;" class="nt-icon fas menu-wit-icon"/>
+                  <Label text="Trang chủ" class="p-r-10 menu-wit-text"/>
+              </StackLayout>
+                <!-- <GridLayout columns="auto, *"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'Home' ? ' selected': '')"
                             @tap="onNavigationItemTap(Home)">
                     <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
                     <Label col="1" text="Trang chủ" class="p-r-10"/>
-                </GridLayout>
+                </GridLayout> -->
 
                 <GridLayout columns="auto, *"
-                            :class="'nt-drawer__list-item' + (selectedPage === 'Browse' ? ' -selected': '')"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'Browse' ? ' selected': '')"
                             @tap="onNavigationItemTap(Browse)">
                     <Label col="0" text.decode="&#xf1ea;" class="nt-icon far"/>
-                    <Label col="1" text="Browse" class="p-r-10"/>
+                    <Label col="1" text="Danh sách lịch học" class="p-r-10"/>
                 </GridLayout>
 
                 <GridLayout columns="auto, *"
-                            :class="'nt-drawer__list-item' + (selectedPage === 'Search' ? ' -selected': '')"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'Search' ? ' selected': '')"
                             @tap="onNavigationItemTap(Search)">
                     <Label col="0" text.decode="&#xf002;" class="nt-icon fas"/>
-                    <Label col="1" text="Search" class="p-r-10"/>
+                    <Label col="1" text="Tìm kiếm" class="p-r-10"/>
                 </GridLayout>
 
                 <GridLayout columns="auto, *"
-                            :class="'nt-drawer__list-item' + (selectedPage === 'Featured' ? ' -selected': '')"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'Featured' ? ' selected': '')"
                             @tap="onNavigationItemTap(Featured)">
                     <Label col="0" text.decode="&#xf005;" class="nt-icon fas"/>
-                    <Label col="1" text="Featured" class="p-r-10"/>
+                    <Label col="1" text="Ưu Thích" class="p-r-10"/>
                 </GridLayout>
 
                 <GridLayout columns="auto, *"
-                            :class="'nt-drawer__list-item' + (selectedPage === 'Settings' ? ' -selected': '')"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'Settings' ? ' selected': '')"
                             @tap="onNavigationItemTap(Settings)">
                     <Label col="0" text.decode="&#xf013;" class="nt-icon fas"/>
-                    <Label col="1" text="Settings" class="p-r-10"/>
+                    <Label col="1" text="Cài đặt" class="p-r-10"/>
                 </GridLayout>
 
                 <StackLayout class="hr"/>
 
                 <GridLayout columns="auto, *"
-                            :class="'nt-drawer__list-item' + (selectedPage === 'Logout' ? ' -selected': '')"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'Logout' ? ' selected': '')"
                             @tap="onNavigationItemTap(Login)">
                     <Label col="0" text.decode="&#xf013;" class="nt-icon fas"/>
-                    <Label col="1" text="LOGOUT" class="p-r-10 logout"/>
+                    <Label col="1" text="Đăng xuất" class="p-r-10 logout"/>
                 </GridLayout>
             </StackLayout>
+            <!-- END MENU -->
         </ScrollView>
     </GridLayout>
 </template>
@@ -74,7 +82,7 @@
     computed: {
         status() {
             // return this.$store.state.shipStore.state.bill;
-            return 'hi';
+            return 'Nguyễn Tấn Tiền';
             // console.log(this.$store.state.shipStore)
         }
     },

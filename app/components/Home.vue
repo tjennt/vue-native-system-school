@@ -1,5 +1,5 @@
 <template>
-    <Page class="page" @loaded="greet">
+    <Page class="page">
         <ActionBar class="action-bar">
             <NavigationButton ios:visibility="collapsed" icon="res://menu" @tap="onDrawerButtonTap"/>
             
@@ -11,13 +11,17 @@
         </ActionBar>
 
         <GridLayout class="page__content">
+            <!-- <Label text="HELLOWORD" class="t-12" /> -->
+
             <!-- <Label class="page__content-icon fas" text.decode="&#xf015;"/>
             <Label class="page__content-placeholder" :text="message"/> -->
             <Label v-show="dataIsNull" class="page__content-notfound" text="Không có dữ liệu sách"></Label>
             <ScrollView v-show="dataIsNull == false">
+              <!-- LIST VIEW BOOKS -->
               <ListView for="book in books"
                     style="height:auto">
                 <v-template>
+                    <Label text="HELLOWORD" class="t-12" />
                     <FlexboxLayout flexDirection="row">
                         <!-- <Image :src="country.imageSrc"
                             class="thumb img-circle" /> -->
@@ -51,7 +55,8 @@
       SelectedPageService.getInstance().updateSelectedPage("Home");
 
       // GET BOOKS
-      axios.get('http://note.tantien.info/public/api/books', {
+      let getBooks = this.domain + 'public/api/books';
+      axios.get(getBooks, {
         headers: this.$store.state.authHeaderApi
       })
       .then(res=> {
@@ -77,6 +82,13 @@
       onDrawerButtonTap() {
         utils.showDrawer();
         // console.log(utils)
+      },
+      alert(message) {
+          return alert({
+              title: "PROQ TEAM",
+              okButtonText: "OK",
+              message: message
+          });
       }
     }
   };
