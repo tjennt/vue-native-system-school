@@ -1,5 +1,5 @@
 <template lang="html">
-    <RadSideDrawer ref="drawer" drawerLocation="Left" v-bind:gesturesEnabled="gesturesEnabled" :drawerTransition="transition">
+    <RadSideDrawer ref="drawer" drawerLocation="Bottom" v-bind:gesturesEnabled="gesturesEnabled" :drawerTransition="transition">
         <StackLayout ~drawerContent backgroundColor="#ffffff">
             <slot name="drawerContent"/>
         </StackLayout>
@@ -7,13 +7,23 @@
             <slot name="mainContent"/>
         </Frame>
     </RadSideDrawer>
+    <!-- <StackLayout>
+        <DrawerContent />
+        <Frame ~mainContent ref="drawerMainContent">
+            <slot name="mainContent"/>
+        </Frame>
+    </StackLayout> -->
 </template>
 
 <script>
   import {SlideInOnTopTransition} from 'nativescript-ui-sidedrawer';
   import SelectedPageService from "~/shared/selected-page-service";
+  import DrawerContent from "./DrawerMenuV2";
 
   export default {
+    components: {
+      DrawerContent
+    },
     data() {
       return {
         transition: new SlideInOnTopTransition(),

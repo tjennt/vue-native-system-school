@@ -5,6 +5,8 @@ import App from "./components/App";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import DrawerContent from "./components/DrawerContent";
+// import DrawerContent from "./components/DrawerMenuV2";
+
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 import store from './store';
 

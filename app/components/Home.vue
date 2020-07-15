@@ -51,9 +51,12 @@
         books: []
       }
     },
+    created() {
+      utils.showDrawer();
+    },
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
-
+      
       // GET BOOKS
       let getBooks = this.domain + 'public/api/books';
       axios.get(getBooks, {

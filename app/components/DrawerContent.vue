@@ -2,25 +2,25 @@
     <GridLayout rows="auto, *" class="nt-drawer__content">
         <StackLayout row="0" class="header-wit">
             <Image class="nt-drawer__header-image" src="https://scontent-xsp1-2.xx.fbcdn.net/v/t1.0-9/104869375_1750187698484058_4901889475050639470_n.jpg?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=yvbFXzELaDEAX_nTgo0&_nc_ht=scontent-xsp1-2.xx&oh=5a453bc22bda37e34145dea8a11f4a92&oe=5F2CA9BE"/>
-            <Label class="header-wit-text" :text="status"/>
-            <Label class="header-wit-footer" text="Quản trị viên"/>
+            <Label class="header-wit-text" :text="name"/>
+            <Label class="header-wit-footer" :text="roleName"/>
         </StackLayout>
 
         <ScrollView row="1" class="nt-drawer__body">
             <!-- START MENU -->
             <StackLayout>
-              <StackLayout :class="'' + (selectedPage === 'Home' ? ' selected': '')"
+              <!-- <StackLayout :class="'' + (selectedPage === 'Home' ? ' selected': '')"
                             @tap="onNavigationItemTap(Home)"
               >
                   <Label text.decode="&#xf015;" class="nt-icon fas menu-wit-icon"/>
                   <Label text="Trang chủ" class="p-r-10 menu-wit-text"/>
-              </StackLayout>
-                <!-- <GridLayout columns="auto, *"
+              </StackLayout> -->
+                <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'Home' ? ' selected': '')"
                             @tap="onNavigationItemTap(Home)">
                     <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
                     <Label col="1" text="Trang chủ" class="p-r-10"/>
-                </GridLayout> -->
+                </GridLayout>
 
                 <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'Browse' ? ' selected': '')"
@@ -80,10 +80,13 @@
         .subscribe((selectedPage) => this.selectedPage = selectedPage);
     },
     computed: {
-        status() {
+        name() {
             // return this.$store.state.shipStore.state.bill;
             return 'Nguyễn Tấn Tiền';
             // console.log(this.$store.state.shipStore)
+        },
+        roleName() {
+          return 'Quản trị viên';
         }
     },
     data() {

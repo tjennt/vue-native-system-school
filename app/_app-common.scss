@@ -74,8 +74,12 @@
 }
 
 .menu-wit {
-    &-icon,
-    &-text {
+    // &-icon,
+    // &-text {
+    //     text-align: left;
+    // }
+    &-layout {
+        float: left;
         text-align: center;
     }
     &-icon {
@@ -84,4 +88,5 @@
     &-text {
         font-size: 10;
     }
+
 }
