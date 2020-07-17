@@ -1,5 +1,5 @@
 <template lang="html">
-    <RadSideDrawer ref="drawer" drawerLocation="Bottom" v-bind:gesturesEnabled="gesturesEnabled" :drawerTransition="transition">
+    <RadSideDrawer ref="drawer" drawerLocation="Left" v-bind:gesturesEnabled="gesturesEnabled" :drawerTransition="transition">
         <StackLayout ~drawerContent backgroundColor="#ffffff">
             <slot name="drawerContent"/>
         </StackLayout>

@@ -57,13 +57,12 @@
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
       
-      // GET BOOKS
+      // GET AXIOS BOOKS
       let getBooks = this.domain + 'public/api/books';
       axios.get(getBooks, {
         headers: this.$store.state.authHeaderApi
       })
       .then(res=> {
-          // console.log(res)
           let respon = JSON.parse(JSON.stringify(res.data));
           if(respon.Status !== 200){
             this.dataIsNull = true;
@@ -74,7 +73,9 @@
       })
       .catch(err=> {
           console.log(err)
-      })
+      });
+      // END GET AXIOS BOOKS
+
     },
     computed: {
       message() {

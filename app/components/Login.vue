@@ -65,6 +65,7 @@
     import axios from "axios";
     import Home from "./Home";
     import * as utils from "~/shared/utils";
+    import * as AppSetting from "application-settings";
 
     export default {
         data() {
@@ -81,6 +82,7 @@
             };
         },
         mounted() {
+            AppSetting.remove("token");
             this.$store.commit("setChangeLogin", false);
             this.$store.commit("setToken", '');
         },
@@ -123,6 +125,7 @@
                     }else{
                         this.processing = false;
                         this.errorActive = false;
+                        AppSetting.setString('token', respon.Notification.Token);
                         this.$store.commit("setChangeLogin", true);
                         this.$store.commit("setToken", respon.Notification.Token);
                         this.$navigateTo(Home, { clearHistory: true });
