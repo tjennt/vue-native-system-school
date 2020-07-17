@@ -5,7 +5,9 @@
         </StackLayout>
         <Frame ~mainContent ref="drawerMainContent">
             <slot name="mainContent"/>
+            
         </Frame>
+
     </RadSideDrawer>
     <!-- <StackLayout>
         <DrawerContent />

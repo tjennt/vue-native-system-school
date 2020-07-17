@@ -10,20 +10,27 @@
                         ios.position="left"/>
             <Label class="action-bar-title" text="Browse"/>
         </ActionBar>
-
-        <GridLayout class="page__content">
-            <Label class="page__content-icon far" text.decode="&#xf1ea;"/>
-            <Label class="page__content-placeholder" :text="message"/>
+        <GridLayout rows="10*, *" class="page__content">
+            <StackLayout row="0">
+              <Label class="page__content-icon far" text.decode="&#xf1ea;"/>
+              <Label class="page__content-placeholder" :text="message"/>
+            </StackLayout>
+            <StackLayout row="1">
+              <MenuBottom />
+            </StackLayout>
         </GridLayout>
-
     </Page>
 </template>
 
 <script>
   import * as utils from "~/shared/utils";
   import SelectedPageService from "../shared/selected-page-service";
+  import MenuBottom from "./MenuBottom";
 
   export default {
+    components: {
+      MenuBottom
+    },
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Browse");
     },
