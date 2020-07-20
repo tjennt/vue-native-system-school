@@ -64,6 +64,8 @@
 <script>
     import axios from "axios";
     import Home from "./Home";
+    import HomeStudent from "./Student/Home";
+
     import * as utils from "~/shared/utils";
     import * as AppSetting from "application-settings";
 
@@ -128,10 +130,20 @@
                         AppSetting.setString('token', respon.Notification.Token);
                         this.$store.commit("setChangeLogin", true);
                         this.$store.commit("setToken", respon.Notification.Token);
-                        this.$navigateTo(Home, { clearHistory: true });
+                        this.$navigateTo(HomeStudent, { clearHistory: true });
                     }
-                }, error => {
-                    console.error(error);
+                })
+                .catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                        console.log(error.config);
                 });
             },
             register() {

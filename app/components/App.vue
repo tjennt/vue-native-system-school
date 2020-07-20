@@ -9,12 +9,7 @@
         </Frame>
 
     </RadSideDrawer>
-    <!-- <StackLayout>
-        <DrawerContent />
-        <Frame ~mainContent ref="drawerMainContent">
-            <slot name="mainContent"/>
-        </Frame>
-    </StackLayout> -->
+
 </template>
 
 <script>

@@ -10,34 +10,29 @@
             <Label class="action-bar-title" :text="home"/>
         </ActionBar>
 
-        <GridLayout rows="10*, *" class="page__content">
-            <!-- <Label text="HELLOWORD" class="t-12" /> -->
+        <!-- <Label text="HELLOWORD" class="t-12" /> -->
 
-            <!-- <Label class="page__content-icon fas" text.decode="&#xf015;"/>
-            <Label class="page__content-placeholder" :text="message"/> -->
-            <Label row="0" v-show="dataIsNull" class="page__content-notfound" text="Không có dữ liệu sách"></Label>
-            <ScrollView row="0" v-show="dataIsNull == false">
-              <!-- LIST VIEW BOOKS -->
-              <ListView for="book in books"
-                    style="height:auto">
-                <v-template>
-                    <Label text="HELLOWORD" class="t-12" />
-                    <FlexboxLayout flexDirection="row">
-                        <!-- <Image :src="country.imageSrc"
-                            class="thumb img-circle" /> -->
-                        <Label :text="book.name" class="t-12"
-                            style="width: 60%" />
-                        <Label :text="book.pages + ' trang'" class="t-12"
-                            style="width: 30%" />
-                        
-                    </FlexboxLayout>
-                </v-template>
-              </ListView>
-            </ScrollView>
-            <StackLayout row="1">
-              <MenuBottom />
-            </StackLayout>
-        </GridLayout>
+        <!-- <Label class="page__content-icon fas" text.decode="&#xf015;"/>
+        <Label class="page__content-placeholder" :text="message"/> -->
+        <Label row="0" v-show="dataIsNull" class="page__content-notfound" text="Không có dữ liệu sách"></Label>
+        <ScrollView row="0" v-show="dataIsNull == false">
+          <!-- LIST VIEW BOOKS -->
+          <ListView for="book in books"
+                style="height:auto">
+            <v-template>
+                <Label text="HELLOWORD" class="t-12" />
+                <FlexboxLayout flexDirection="row">
+                    <!-- <Image :src="country.imageSrc"
+                        class="thumb img-circle" /> -->
+                    <Label :text="book.name" class="t-12"
+                        style="width: 60%" />
+                    <Label :text="book.pages + ' trang'" class="t-12"
+                        style="width: 30%" />
+                    
+                </FlexboxLayout>
+            </v-template>
+          </ListView>
+        </ScrollView>
     </Page>
 </template>
 
@@ -45,7 +40,8 @@
   import axios from "axios";
   import * as utils from "~/shared/utils";
   import SelectedPageService from "../shared/selected-page-service";
-  import MenuBottom from "./MenuBottom";
+  import MenuBottom from "./MenuBottomV2";
+
   export default {
     components: {
       MenuBottom

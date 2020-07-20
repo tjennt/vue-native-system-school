@@ -8,9 +8,13 @@ import App from "./components/App";
 import Login from "./components/Login";
 import Home from "./components/Home";
 
+
+// Import home student 
+import HomeStudent from "./components/Student/Home";
+import DrawerContentStudent from "./components/Student/DrawerContent";
+
 // Import menu app
 import DrawerContent from "./components/DrawerContent";
-// import DrawerContent from "./components/DrawerMenuV2";
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 
 // Import data vuex
@@ -22,8 +26,12 @@ Vue.config.silent = (TNS_ENV === 'production');
 Vue.use(Vuex);
 Vue.use(RadSideDrawer);
 
-
 Vue.mixin({
+  components: {
+    HomeStudent,
+    DrawerContentStudent,
+    Home
+  },
   computed: {
     checkLogin() {
       let token = AppSetting.getString('token');
@@ -32,11 +40,21 @@ Vue.mixin({
         return true;
       }
       return false;
+    },
+    redirectHome() {
+      return this.Student.Home;
+    },
+    drawerContent() {
+      return this.Student.DrawerContent;
     }
   },
   data() {
     return {
-      domain: 'http://api.tantien.info/'
+      domain: 'http://api.tantien.info/',
+      Student: {
+        DrawerContent: DrawerContentStudent,
+        Home: HomeStudent
+      }
     }
   }
 });
@@ -46,8 +64,8 @@ new Vue({
         return h(
           App,
           [
-            h(DrawerContent, { slot: 'drawerContent' }),
-            h(this.checkLogin ? Home : Login, { slot: 'mainContent' })
+            h(this.drawerContent, { slot: 'drawerContent' }),
+            h(this.checkLogin ? this.redirectHome : Login, { slot: 'mainContent' })
           ]
         )
     },
