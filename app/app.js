@@ -13,6 +13,13 @@ import Home from "./components/Home";
 import HomeStudent from "./components/Student/Home";
 import DrawerContentStudent from "./components/Student/DrawerContent";
 
+
+
+// Import home teacher
+import HomeTeacher from "./components/Teacher/Home";
+import DrawerContentTeacher from "./components/Teacher/DrawerContent";
+
+
 // Import menu app
 import DrawerContent from "./components/DrawerContent";
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
@@ -42,10 +49,10 @@ Vue.mixin({
       return false;
     },
     redirectHome() {
-      return this.Student.Home;
+      return this.Teacher.Home;
     },
     drawerContent() {
-      return this.Student.DrawerContent;
+      return this.Teacher.DrawerContent;
     }
   },
   data() {
@@ -54,6 +61,10 @@ Vue.mixin({
       Student: {
         DrawerContent: DrawerContentStudent,
         Home: HomeStudent
+      },
+      Teacher: {
+        DrawerContent: DrawerContentTeacher,
+        Home: HomeTeacher
       }
     }
   }
@@ -71,3 +82,6 @@ new Vue({
     },
     store
 }).$start();
+
+
+// C:\Users\ADMIN\Documents\vuejs\native\vue-native-system-school\platforms\android\app\build\outputs\apk\debug

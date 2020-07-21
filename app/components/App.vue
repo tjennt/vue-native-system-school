@@ -4,8 +4,7 @@
             <slot name="drawerContent"/>
         </StackLayout>
         <Frame ~mainContent ref="drawerMainContent">
-            <slot name="mainContent"/>
-            
+            <slot name="mainContent"/>     
         </Frame>
 
     </RadSideDrawer>

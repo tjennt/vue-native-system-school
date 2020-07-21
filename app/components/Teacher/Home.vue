@@ -10,19 +10,22 @@
                         ios.position="left"/>
             <Label class="action-bar-title" :text="title"/>
         </ActionBar>
+
         <!-- CONTENT -->
         <Label text="HOME STUDENT"></Label>
-        <GridLayout rows="auto,auto">
-            <GridLayout row="0" columns="*,*,*">
+        <GridLayout rows="auto,auto, auto">
+            <!-- <GridLayout row="0" columns="*,*,*">
                 <Button v-for="(button, index) in data.buttons" 
                     :key="index" 
                     @tap="getdataInfo(button.id)"
                     :column="index"
                     :text="button.text"
                 ></Button>
-            </GridLayout>
-            <!-- <Label row="1" text="hr"> -->
-            <StackLayout row="1">
+            </GridLayout> -->
+            <Label row="0" class="text-title" text="HOME NÈ">
+            </Label>
+            <StackLayout row="1" class="hr" />
+            <StackLayout row="2">
                 <ActivityIndicator :busy="isBusy" />
                 <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
 
@@ -34,6 +37,7 @@
                                 <Image :src="newsD.imageSrc" class="thumb img-circle" />
                                 <Label :text="newsD.name" class="t-12"
                                     style="width: 60%" />
+                                <Button text="Tap"></Button>
                             </FlexboxLayout>
                         </v-template>
                     </ListView>
@@ -47,7 +51,7 @@
 <script>
     import * as utils from "~/shared/utils";
     import SelectedPageService from "../../shared/selected-page-service";
-    import NewsDetail from './Components/NewsDetail';
+    // import NewsDetail from './Components/NewsDetail';
 export default {
     mounted() {
         this.data.news = [
@@ -103,9 +107,9 @@ export default {
     },
     data() {
         return {
-            title: 'Trang chủ',
+            title: 'Trang chủ giáo viên',
             isBusy: false,
-            newsDetail: NewsDetail,
+            // newsDetail: NewsDetail,
             data: {
                 buttons: [
                     {text: 'Bảng tin', id: 1},
