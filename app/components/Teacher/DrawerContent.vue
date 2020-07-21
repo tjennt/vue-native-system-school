@@ -16,12 +16,11 @@
                     <Label col="1" text="Trang chủ" class="p-r-10"/>
                 </GridLayout>
                 <GridLayout columns="auto, *"
-                            :class="'nt-drawer__list-item' + (selectedPage === 'Attendance' ? ' selected': '')"
-                            @tap="onNavigationItemTap(Attendance)">
+                            :class="'nt-drawer__list-item' + (selectedPage === 'ClassStudyToday' ? ' selected': '')"
+                            @tap="onNavigationItemTap(ClassStudyToday)">
                     <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
-                    <Label col="1" text="Điểm" class="p-r-10"/>
+                    <Label col="1" text="Lớp dạy hôm nay" class="p-r-10"/>
                 </GridLayout>
-
                 <StackLayout class="hr"/>
 
                 <GridLayout columns="auto, *"
@@ -37,22 +36,17 @@
 </template>
 
 <script>
-  import Home from "./Home";
-  import Login from "../Login";
-  
-  // 
-  import Attendance from "./Attendance/Attendance";
-
   import * as utils from "~/shared/utils";
   import SelectedPageService from "~/shared/selected-page-service";
 
+  import Home from "./Home";
+  import Login from "../Login";  
+  import ClassStudyToday from "./Attendance/ClassStudyToday";
+  
   export default {
     mounted() {
       SelectedPageService.getInstance().selectedPage$
-        .subscribe((selectedPage) => {
-          this.selectedPage = selectedPage;
-          console.log(selectedPage);
-        });
+        .subscribe((selectedPage) => this.selectedPage = selectedPage );
     },
     computed: {
         name() {
@@ -68,14 +62,14 @@
       return {
         Home: Home,
         Login: Login,
-        Attendance: Attendance,
+        ClassStudyToday: ClassStudyToday,
         selectedPage: ""
       };
     },
     components: {
       Login,
       Home,
-      Attendance
+      ClassStudyToday
     },
     methods: {
       onNavigationItemTap(component) {

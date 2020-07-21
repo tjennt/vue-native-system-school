@@ -42,7 +42,7 @@
 
                 <!-- BUTTON LOGIN AND REGISTER -->
                 <Button :text="isLoggingIn ? 'Đăng nhập' : 'Đăng kí'" :isEnabled="!processing"
-                    @tap="submit" class="btn btn-primary m-t-20"></Button>
+                    @tap="submit" class="btn btn-primary fz-20 m-t-20"></Button>
 
                 <!-- FORGOT PASSWORD PROMORT  -->
                 <Label *v-show="isLoggingIn" text="Quên mật khẩu?"
@@ -65,6 +65,8 @@
     import axios from "axios";
     import Home from "./Home";
     import HomeStudent from "./Student/Home";
+    import HomeTeacher from "./Teacher/Home";
+
 
     import * as utils from "~/shared/utils";
     import * as AppSetting from "application-settings";
@@ -130,7 +132,7 @@
                         AppSetting.setString('token', respon.Notification.Token);
                         this.$store.commit("setChangeLogin", true);
                         this.$store.commit("setToken", respon.Notification.Token);
-                        this.$navigateTo(HomeStudent, { clearHistory: true });
+                        this.$navigateTo(HomeTeacher, { clearHistory: true });
                     }
                 })
                 .catch(error => {
@@ -237,9 +239,6 @@
         opacity: 0.5;
     }
 
-    .btn-primary {
-        margin: 30 5 15 5;
-    }
 
     .login-label {
         horizontal-align: center;
@@ -253,17 +252,6 @@
 
     .bold {
         color: #000000;
-    }
-    .btn-primary {
-        height: 50;
-        background-color: #2a4054;
-        border-radius: 5;
-        font-size: 20;
-        font-weight: 600;
-        color: #fff;
-    }
-    .btn-primary:disabled {
-        opacity: 0.5;
     }
     .alert {
         width: 100%;
