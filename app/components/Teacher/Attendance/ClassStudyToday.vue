@@ -25,7 +25,8 @@
                             <Label row="0" col="0" :text="index + 1 + ' / WD14301'.toUpperCase()" class="text-number-sd"/>
                             <Image row="1" col="0" :src="newsD.imageSrc" class="thumb img-circle" />
                             <Label row="1" col="1" style="font-size: 14px" :text="newsD.name + ' - Ca 1'" />
-                            <Button row="1" col="2" text="Điểm danh" @tap="getDetailClass(newsD)" class="btn btn-primary"></Button>
+                            <Button row="1" col="2" text="Điểm danh" :isEnabled="!newsD.checked" @tap="getDetailClass(newsD, index)" class="btn btn-primary"></Button>
+                            <ActivityIndicator row="1" col="2" :busy="newsD.checked"></ActivityIndicator>
                         </GridLayout>
                     </v-template>
                 </ListView>
@@ -38,7 +39,7 @@
 
 <script>
     import * as utils from "~/shared/utils";
-    import SelectedPageService from "../../../shared/selected-page-service";
+    import SelectedPageService from "~/shared/selected-page-service";
 
     import Attendance from "./Attendance";
 
@@ -99,7 +100,7 @@
                         {
                             name: "WD14311",
                             imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ru.png",
-                            checked: true
+                            checked: false
                         },
                         {
                             name: "WD14312",
@@ -119,6 +120,7 @@
                     news: []
                 },
                 isData: true,
+                isEnabled: true,
                 Attendance: Attendance
             }
         },
@@ -126,18 +128,23 @@
             onDrawerButtonTap() {
                 utils.showDrawer();
             },
-            getDetailClass(newsD) {
-                this.$navigateTo(this.Attendance, {
-                    animated: true,
-                    transition: {
-                        // name: 'flip',
-                        // duration: 200,
-                        // curve: 'linear'
-                    },
-                    props: {
-                        foo: 'bar',
-                    }
-                });
+            getDetailClass(news, index) {
+                this.data.news[parseInt(index)].checked = true;
+                setTimeout(()=> {
+                    this.$navigateTo(this.Attendance, {
+                        // animated: true,
+                        // transition: {
+                        //     name: 'flip',
+                        //     duration: 200,
+                        //     curve: 'linear'
+                        // },
+                        props: {
+                            foo: 'bar',
+                        }
+                    }).then(()=> {
+                        this.data.news[parseInt(index)].checked = false;
+                    });
+                }, 100);
             }
         }
     }

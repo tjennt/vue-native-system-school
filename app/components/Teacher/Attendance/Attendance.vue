@@ -19,6 +19,8 @@
         <!-- <ScrollView v-show="isData"> -->
 
         <StackLayout>
+            
+            <!-- LIST STUDENTS -->
             <ListView 
                 for="(newsD, index) in data.news" 
                 class="list-group" 
@@ -26,16 +28,17 @@
                 height="91%"
             >
                 <v-template>
-                    <GridLayout class="list-group-item" rows="*,*" columns="auto, *, 1*">
+                    <GridLayout @tap="attendanceStudentSwitch(newsD, index)" class="list-group-item" :class="{'bg-attendance': newsD.checked }" rows="*,*" columns="auto, *, 1*">
                         <Label row="0" col="0" :text="index + 1 + ' /  Ps09110'.toUpperCase()" class="text-number-sd"/>
-                        <!-- <Label row="0" col="0" :text="index + 1" /> -->
                         <Image row="1" col="0" :src="newsD.imageSrc" class="thumb img-circle" />
-                        <Label row="1" col="1" :text="newsD.name" />
-                        <Switch row="1" col="2" :checked="newsD.checked" />
+                        <Label row="1" col="1" :text="newsD.name" class="text-name"/>
+                        <!-- <Switch row="1" col="2" :checked="newsD.checked"/> -->
+                        <Image row="1" col="2" :src="newsD.checked ? '~/assets/switch-true.png' : '~/assets/switch-false.png'" class="image-checkbox" />                     
                     </GridLayout>
                 </v-template>
             </ListView>
 
+            <!-- NOTE AND SAVE -->
             <GridLayout verticalAlignment="top" height="9%" rows="*" columns="*,auto" class="input-field" >
                 <TextField 
                     class="input" 
@@ -50,7 +53,7 @@
                     :isEnabled="!isBusy"
                     @tap="saveAtendance"
                 ></Button>
-                <ActivityIndicator rowSpan="3" :busy="isBusy"></ActivityIndicator>
+                <ActivityIndicator column="1" :busy="isBusy"></ActivityIndicator>
             </GridLayout>
         </StackLayout>
         <!-- </ScrollView> -->
@@ -146,6 +149,12 @@
             
         },
         methods: {
+            attendanceStudent(args) {
+                this.data.news[args.index].checked = !this.data.news[args.index].checked;
+            },
+            attendanceStudentSwitch(newsD, index){
+                this.data.news[index].checked = !this.data.news[index].checked;
+            },           
             saveAtendance() {
                 this.isBusy = true;
                 setTimeout(()=> {
@@ -162,5 +171,10 @@
         font-size: 8;
         font-weight: bold;
     }
-
+    .text-name {
+        font-size: 13;
+    }
+    .image-checkbox {
+        width: 15%;
+    }
 </style>

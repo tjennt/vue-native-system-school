@@ -3,7 +3,7 @@
         <FlexboxLayout class="page">
             <StackLayout class="form">
                 <!-- IMAGE AND NAME APP -->
-                <Image class="logo" src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-9/50398018_1265797996923033_3309203887033942016_n.jpg?_nc_cat=108&_nc_sid=174925&_nc_ohc=Hz4Sh2AqozsAX_OLM_Y&_nc_ht=scontent.fsgn5-5.fna&oh=8c3daef781766fa9336c743dffa76b94&oe=5F16D4BF"></Image>
+                <Image class="logo" src="~/assets/image-app.jpg"></Image>
                 <Label class="header" :text="nameApp"></Label>
 
                     <!-- INFO ERROR -->

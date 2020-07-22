@@ -8,7 +8,7 @@ const debug = 'debug';
 const store = new Vuex.Store({
     state: {
       checkLogin: true,
-      nameApp: 'POLYTECHNIC',
+      nameApp: 'PROQ-SCHOOL',
       authHeader: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
