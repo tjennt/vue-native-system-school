@@ -1,32 +1,22 @@
 import Vue from 'nativescript-vue';
 import Vuex from 'vuex';
 
+
+// IMPORT MODULES 
+import auth from './modules/auth';
+import locale from './modules/locale';
+
+
 Vue.use(Vuex);
 
 const debug = 'debug';
 
 const store = new Vuex.Store({
-    state: {
-      checkLogin: true,
-      nameApp: 'PROQ-SCHOOL',
-      authHeader: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      authHeaderApi: {
-        'Authorization': ''
-      }
-    },
-    actions: {
-      chageLogin({ commit }) {
-          commit('setChangeLogin')
-      }
+  modules: {
+    auth : auth,
+    locale: locale
   },
-  mutations: {
-    setChangeLogin: (state, status) => state.checkLogin = status,
-    setToken: (state, token) => state.authHeaderApi.Authorization = 'Bearer ' + token
-  },
-    strict: debug,
+  strict: debug
 });
   
 

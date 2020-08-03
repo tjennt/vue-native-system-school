@@ -41,19 +41,19 @@
                 </GridLayout>
 
                 <!-- BUTTON LOGIN AND REGISTER -->
-                <Button :text="isLoggingIn ? 'Đăng nhập' : 'Đăng kí'" :isEnabled="!processing"
+                <Button :text="isLoggingIn ? locale.buttonLogin : locale.buttonRegister" :isEnabled="!processing"
                     @tap="submit" class="btn btn-primary fz-20 m-t-20"></Button>
 
                 <!-- FORGOT PASSWORD PROMORT  -->
-                <Label *v-show="isLoggingIn" text="Quên mật khẩu?"
+                <Label *v-show="isLoggingIn" :text="locale.buttonForgotPassword"
                     class="login-label" @tap="forgotPassword()"></Label>
             </StackLayout>
 
             <!-- DON'T REGISTER -->
             <Label class="login-label sign-up-label" @tap="toggleForm">
                 <FormattedString>
-                    <Span :text="isLoggingIn ? 'Chưa có tài khoản?' : 'Trở lại đăng nhập'"></Span>
-                    <Span :text="isLoggingIn ? ' Đăng kí' : ''" class="bold"></Span>
+                    <Span :text="isLoggingIn ? locale.buttonNoAccount : locale.buttonBackLogin "></Span>
+                    <Span :text="isLoggingIn ? locale.buttonRegister : ''" class="bold"></Span>
                 </FormattedString>
             </Label>
             
@@ -71,6 +71,10 @@
     import * as utils from "~/shared/utils";
     import * as AppSetting from "application-settings";
 
+
+    // IMPORT VUEX
+    import {mapState, mapActions} from 'vuex';
+
     export default {
         data() {
             return {
@@ -87,15 +91,19 @@
         },
         mounted() {
             AppSetting.remove("token");
-            this.$store.commit("setChangeLogin", false);
-            this.$store.commit("setToken", '');
+            this.setChangeLogin(false);
+            this.setToken('');
         },
         computed: {
-            nameApp() {
-                return this.$store.state.nameApp;
-            }
+            ...mapState('auth', {
+                nameApp: 'nameApp'
+            }),
+            ...mapState('locale', {
+                locale: 'locale'
+            })
         },
         methods: {
+             ...mapActions('auth', ['setChangeLogin', 'setToken']),
             toggleForm() {
                 this.isLoggingIn = !this.isLoggingIn;
             },
@@ -130,8 +138,8 @@
                         this.processing = false;
                         this.errorActive = false;
                         AppSetting.setString('token', respon.Notification.Token);
-                        this.$store.commit("setChangeLogin", true);
-                        this.$store.commit("setToken", respon.Notification.Token);
+                        this.setChangeLogin(true);
+                        this.setToken(respon.Notification.Token);
                         this.$navigateTo(HomeTeacher, { clearHistory: true });
                     }
                 })

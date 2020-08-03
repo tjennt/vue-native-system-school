@@ -25,7 +25,13 @@ import DrawerContent from "./components/DrawerContent";
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 
 // Import data vuex
-import store from './store';
+import store from "./store";
+import {mapState, mapActions} from 'vuex';
+
+// Import locale
+import vi from './assets/lang/vi.json';
+import en from './assets/lang/en.json';
+
 
 
 Vue.config.silent = (TNS_ENV === 'production');
@@ -43,7 +49,7 @@ Vue.mixin({
     checkLogin() {
       let token = AppSetting.getString('token');
       if(token){
-        this.$store.commit("setToken", token);
+        this.setToken(token);
         return true;
       }
       return false;
@@ -54,6 +60,19 @@ Vue.mixin({
     drawerContent() {
       return this.Teacher.DrawerContent;
     }
+  },
+  mounted() {
+    let getLocale = AppSetting.getString('locale')
+    let locale = en
+    if(getLocale == 'vi'){
+      locale = vi
+    }
+    this.setLocale(locale)
+  },
+  methods: {
+    ...mapActions('auth', ['setToken']),
+    ...mapActions('locale', ['setLocale'])
+
   },
   data() {
     return {
