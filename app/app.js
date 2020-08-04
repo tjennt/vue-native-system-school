@@ -104,6 +104,3 @@ new Vue({
     },
     store
 }).$start();
-
-
-// C:\Users\ADMIN\Documents\vuejs\native\vue-native-system-school\platforms\android\app\build\outputs\apk\debug

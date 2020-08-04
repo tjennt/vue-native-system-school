@@ -3,6 +3,7 @@ hooks/
 !hooks/after-createProject/*.js
 node_modules/
 platforms/
+build-app.txt
 
 # NativeScript Template
 *.js.map

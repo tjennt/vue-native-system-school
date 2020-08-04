@@ -87,12 +87,12 @@
                     password: "1",
                     confirmPassword: "1"
                 }
-            };
+            }
         },
         mounted() {
-            AppSetting.remove("token");
-            this.setChangeLogin(false);
-            this.setToken('');
+            AppSetting.remove("token")
+            this.setChangeLogin(false)
+            this.setToken('')
         },
         computed: {
             ...mapState('auth', {
@@ -106,20 +106,20 @@
         methods: {
              ...mapActions('auth', ['setChangeLogin', 'setToken']),
             toggleForm() {
-                this.isLoggingIn = !this.isLoggingIn;
+                this.isLoggingIn = !this.isLoggingIn
             },
             submit() {
                 if (!this.user.email || !this.user.password) {
-                    this.processing = false;
-                    this.errorActive = true;
-                    this.errorText = "Vui lòng nhập đầy đủ thông tin";
-                    return;
+                    this.processing = false
+                    this.errorActive = true
+                    this.errorText = "Vui lòng nhập đầy đủ thông tin"
+                    return
                 }
-                this.processing = true;
+                this.processing = true
                 if (this.isLoggingIn) {
-                    this.login();
+                    this.login()
                 } else {
-                    this.register();
+                    this.register()
                 }
             },
             async login() {
@@ -134,7 +134,7 @@
                 // END TEST DEVICE
 
                 try{
-                    let login = this.domain + 'public/auth/login';
+                    let login = this.domain + 'public/auth/login'
                     let loginSuccess = await axios.post(login,{
                         email: this.user.email,
                         password: this.user.password
@@ -142,20 +142,20 @@
                     {headers: this.authHeader})
                     
                     if(loginSuccess.data.Status != 200){
-                        this.processing = false;
-                        this.errorActive = true;
-                        this.errorText = loginSuccess.data.Message;
+                        this.processing = false
+                        this.errorActive = true
+                        this.errorText = loginSuccess.data.Message
                     }else{
-                        this.processing = false;
-                        this.errorActive = false;
-                        AppSetting.setString('token', loginSuccess.data.Notification.Token);
-                        this.setChangeLogin(true);
-                        this.setToken(loginSuccess.data.Notification.Token);
+                        this.processing = false
+                        this.errorActive = false
+                        AppSetting.setString('token', loginSuccess.data.Notification.Token)
+                        this.setChangeLogin(true)
+                        this.setToken(loginSuccess.data.Notification.Token)
                         // this.$navigateTo(HomeTeacher, { clearHistory: true });
-                        this.$navigateTo(HomeStudent, { clearHistory: true });
+                        this.$navigateTo(HomeStudent, { clearHistory: true })
                     }
                 }catch(error){
-                    console.log(error);
+                    console.log(error)
                 }
             },
             register() {
@@ -182,18 +182,18 @@
                         return;
                     }
                     if (data.text.length === 0) {
-                        this.alert('Vui lòng nhập địa chỉ email');
+                        this.alert('Vui lòng nhập địa chỉ email')
                     }else{
-                        this.alert('Vui lòng kiểm tra email');
+                        this.alert('Vui lòng kiểm tra email')
                     }
-                });
+                })
             },
             focusPassword() {
-                this.$refs.password.nativeView.focus();
+                this.$refs.password.nativeView.focus()
             },
             focusConfirmPassword() {
                 if (!this.isLoggingIn) {
-                    this.$refs.confirmPassword.nativeView.focus();
+                    this.$refs.confirmPassword.nativeView.focus()
                 }
             },
             alert(message) {
@@ -201,7 +201,7 @@
                     title: "PROQ TEAM",
                     okButtonText: "OK",
                     message: message
-                });
+                })
             }
         }
     };

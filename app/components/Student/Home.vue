@@ -31,14 +31,14 @@
 
                 <ScrollView ref="scrollView" v-show="isData">
                     <ListView for="(newsD, index) in data.news" @itemTap="newsDetailM"
-                        style="height:1000vh">
+                        style="height:1380px">
                         <v-template>
                             <StackLayout class="card-news" :class="index % 2 == 0 ? '': 'bg-center'">
                                 <!-- <Image :src="newsD.imageSrc" class="thumb img-circle" /> -->
                                 <Label :text="newsD.name" class="label-title" textWrap="true" />
                                 <Label :text="newsD.content" class="t-12"  textWrap="true"/>
                                 
-                                <!-- DATE POST NEWS -->
+                                <!-- DATE POST NEWS C:\Program Files\AdoptOpenJDK\jdk8u192-b12-->
                                 <GridLayout rows="auto" columns="10*,auto">
                                     <Label rows="0" column="1" text="20/03/2020"/>
                                 </GridLayout>
@@ -88,141 +88,6 @@ export default {
                         name: "Spain",
                         content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Spain",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-                    },
-                    {
-                        name: "Ethiopia",
-                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
                     }
                 ];
     },
