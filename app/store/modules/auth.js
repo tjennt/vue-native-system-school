@@ -2,6 +2,7 @@
 const state = {
     checkLogin: true,
     nameApp: 'PROQ-SCHOOL',
+    domain: 'http://api.tantien.info/',
     authHeader: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

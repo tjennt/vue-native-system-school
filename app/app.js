@@ -21,7 +21,7 @@ import DrawerContentTeacher from "./components/Teacher/DrawerContent";
 
 
 // Import menu app
-import DrawerContent from "./components/DrawerContent";
+// import DrawerContent from "./components/DrawerContent";
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 
 // Import data vuex
@@ -40,12 +40,9 @@ Vue.use(Vuex);
 Vue.use(RadSideDrawer);
 
 Vue.mixin({
-  components: {
-    HomeStudent,
-    DrawerContentStudent,
-    Home
-  },
   computed: {
+    ...mapState('auth',['domain']),
+    // CHECK LOCALSTORAGE AND VUEX
     checkLogin() {
       let token = AppSetting.getString('token');
       if(token){
@@ -54,29 +51,35 @@ Vue.mixin({
       }
       return false;
     },
+
+    // LOGIN SUCCESS ANS REDIRECT HOME
     redirectHome() {
-      return this.Teacher.Home;
+      return this.Student.Home;
     },
+
+    // DRAWE MENU ROLE
     drawerContent() {
-      return this.Teacher.DrawerContent;
+      return this.Student.DrawerContent;
     }
   },
   mounted() {
+
+    // CHECK LOCALE
     let getLocale = AppSetting.getString('locale')
     let locale = en
     if(getLocale == 'vi'){
       locale = vi
     }
     this.setLocale(locale)
+
+
   },
   methods: {
     ...mapActions('auth', ['setToken']),
     ...mapActions('locale', ['setLocale'])
-
   },
   data() {
     return {
-      domain: 'http://api.tantien.info/',
       Student: {
         DrawerContent: DrawerContentStudent,
         Home: HomeStudent

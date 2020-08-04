@@ -10,31 +10,39 @@
                         ios.position="left"/>
             <Label class="action-bar-title" :text="title"/>
         </ActionBar>
+
         <!-- CONTENT -->
-        <Label text="HOME STUDENT"></Label>
-        <GridLayout rows="auto,auto">
+        <GridLayout rows="auto, auto">
             <GridLayout row="0" columns="*,*,*">
-                <Button v-for="(button, index) in data.buttons" 
+                <Label v-for="(button, index) in data.buttons" 
                     :key="index" 
-                    @tap="getdataInfo(button.id)"
+                    @tap="getdataInfo(button.id, index)"
                     :column="index"
                     :text="button.text"
-                ></Button>
+                    class="categories-title"
+                    :class=" index == category ? 'selected-category' : ''"
+
+                ></Label>
             </GridLayout>
             <!-- <Label row="1" text="hr"> -->
             <StackLayout row="1">
                 <ActivityIndicator :busy="isBusy" />
                 <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
 
-                <ScrollView v-show="isData">
-                    <ListView for="newsD in data.news" @itemTap="newsDetailM"
-                        style="height:1200px">
+                <ScrollView ref="scrollView" v-show="isData">
+                    <ListView for="(newsD, index) in data.news" @itemTap="newsDetailM"
+                        style="height:1000vh">
                         <v-template>
-                            <FlexboxLayout flexDirection="row">
-                                <Image :src="newsD.imageSrc" class="thumb img-circle" />
-                                <Label :text="newsD.name" class="t-12"
-                                    style="width: 60%" />
-                            </FlexboxLayout>
+                            <StackLayout class="card-news" :class="index % 2 == 0 ? '': 'bg-center'">
+                                <!-- <Image :src="newsD.imageSrc" class="thumb img-circle" /> -->
+                                <Label :text="newsD.name" class="label-title" textWrap="true" />
+                                <Label :text="newsD.content" class="t-12"  textWrap="true"/>
+                                
+                                <!-- DATE POST NEWS -->
+                                <GridLayout rows="auto" columns="10*,auto">
+                                    <Label rows="0" column="1" text="20/03/2020"/>
+                                </GridLayout>
+                            </StackLayout>
                         </v-template>
                     </ListView>
                 </ScrollView>
@@ -52,58 +60,175 @@ export default {
     mounted() {
         this.data.news = [
                     {
-                        name: "China",
+                        name: "Thông báo về việc ngừng hỗ trợ sinh viên đóng học phí trực tiếp",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cn.png"
                     },
                     {
                         name: "Czech Republic",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cz.png"
                     },
                     {
                         name: "Germany",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/de.png"
                     },
                     {
                         name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
                     },
                     {
                         name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
                     },
                     {
-                        name: "Croatia",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hr.png"
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
                     },
                     {
-                        name: "Hungary",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hu.png"
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
                     },
                     {
-                        name: "Italy",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/it.png"
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
                     },
                     {
-                        name: "Jamaica",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/jm.png"
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
                     },
                     {
-                        name: "Romania",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ro.png"
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
                     },
                     {
-                        name: "Russia",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ru.png"
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
                     },
                     {
-                        name: "United States",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/us.png"
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
                     }
                 ];
     },
     data() {
         return {
-            title: 'Trang chủ',
+            title: 'TRANG CHỦ HỌC SINH',
             isBusy: false,
             newsDetail: NewsDetail,
             data: {
@@ -114,104 +239,87 @@ export default {
                 ],
                 news: []
             },
-            isData: true
+            isData: true,
+            category: 0
         }
     },
     computed: {
          
     },
     methods: {
-        getdataInfo(button) {
+        getdataInfo(button, index) {
             this.isBusy = true;
             this.isData = true;
-
             if(button == 2) {
                 setTimeout(()=> {
                     this.data.news = [{
-                            name: "Australia",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/au.png"
-                        },
-                        {
-                            name: "Belgium",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/be.png"
-                        },
-                        {
-                            name: "Bulgaria",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/bg.png"
-                        },
-                        {
-                            name: "Canada",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ca.png"
-                        },
-                        {
-                            name: "Switzerland",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ch.png"
-                        }]; 
+                        name: "Thông báo về việc ngừng hỗ trợ sinh viên",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cn.png"
+                    },
+                    {
+                        name: "Czech Republic",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cz.png"
+                    },
+                    {
+                        name: "Germany",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/de.png"
+                    },
+                    {
+                        name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
+                    },
+                    {
+                        name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
+                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
+                    }]; 
                     this.isBusy = false;
                     }, 300);
             }else if (button == 1){
                 setTimeout(()=> {
                     this.data.news = [
                     {
-                        name: "China",
+                        name: "Thông báo về việc ngừng hỗ trợ sinh viên",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cn.png"
                     },
                     {
                         name: "Czech Republic",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cz.png"
                     },
                     {
                         name: "Germany",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/de.png"
                     },
                     {
                         name: "Spain",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
                     },
                     {
                         name: "Ethiopia",
+                        content: "Ngày 13-02-2020 trường đã có quyết định mới dành cho sinh viên về việc đóng học phí với giá rẻ bất ngờ cho mọi người",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-                    },
-                    {
-                        name: "Croatia",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hr.png"
-                    },
-                    {
-                        name: "Hungary",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hu.png"
-                    },
-                    {
-                        name: "Italy",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/it.png"
-                    },
-                    {
-                        name: "Jamaica",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/jm.png"
-                    },
-                    {
-                        name: "Romania",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ro.png"
-                    },
-                    {
-                        name: "Russia",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ru.png"
-                    },
-                    {
-                        name: "United States",
-                        imageSrc: "https://play.nativescript.org/dist/assets/img/flags/us.png"
                     }
                 ];
                     this.isBusy = false;
-                    }, 300);
+                    }, 100);
             }else{
                 setTimeout(()=> {
                     this.isBusy = false;
                     this.isData = false;
-                    }, 300);
+                    }, 100);
             }
+            this.category = index;
         },
         newsDetailM(args) {
-            this.$showModal(this.newsDetail, { 
+            this.$navigateTo(this.newsDetail, { 
                 fullscreen: true,  
                 props: { data: args.item }
             });
@@ -225,4 +333,27 @@ export default {
 </script>
 
 <style lang="scss">
+.categories-title {
+    padding: 10;
+    text-align: center;
+    font-size: 20;
+    font-weight: bold;
+}
+.selected-category {
+    border-bottom-width: 5;
+    border-color: #2a4054;
+}
+.card-news {
+    border: 5 #000 solid;
+}
+.bg-center {
+    background-color: rgba(42,64,84, 0.2);
+}
+.label-title {
+    font-size: 20;
+    font-weight: bold;
+}
+.float-right {
+    float: right;
+}
 </style>

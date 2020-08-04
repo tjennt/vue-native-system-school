@@ -96,7 +96,8 @@
         },
         computed: {
             ...mapState('auth', {
-                nameApp: 'nameApp'
+                nameApp: 'nameApp',
+                authHeader: 'authHeader'
             }),
             ...mapState('locale', {
                 locale: 'locale'
@@ -121,40 +122,41 @@
                     this.register();
                 }
             },
-            login() {
-                let login = this.domain + 'public/auth/login';
-                axios.post(login,{
-                    email: this.user.email,
-                    password: this.user.password
-                },
-                {headers: this.$store.state.authHeader})
-                .then(res => {
-                    let respon = JSON.parse(JSON.stringify(res.data));
-                    if(respon.Status != 200){
+            async login() {
+
+                // TEST DEVICE NOT HTTP
+                    // AppSetting.setString('token', 'loginSuccess.data.Notification.Token');
+                    // this.setChangeLogin(true);
+                    // this.setToken('loginSuccess.data.Notification.Token');
+                    // // this.$navigateTo(HomeTeacher, { clearHistory: true });
+                    // this.$navigateTo(HomeStudent, { clearHistory: true });
+                    // return;
+                // END TEST DEVICE
+
+                try{
+                    let login = this.domain + 'public/auth/login';
+                    let loginSuccess = await axios.post(login,{
+                        email: this.user.email,
+                        password: this.user.password
+                    },
+                    {headers: this.authHeader})
+                    
+                    if(loginSuccess.data.Status != 200){
                         this.processing = false;
                         this.errorActive = true;
-                        this.errorText = respon.Message;
+                        this.errorText = loginSuccess.data.Message;
                     }else{
                         this.processing = false;
                         this.errorActive = false;
-                        AppSetting.setString('token', respon.Notification.Token);
+                        AppSetting.setString('token', loginSuccess.data.Notification.Token);
                         this.setChangeLogin(true);
-                        this.setToken(respon.Notification.Token);
-                        this.$navigateTo(HomeTeacher, { clearHistory: true });
+                        this.setToken(loginSuccess.data.Notification.Token);
+                        // this.$navigateTo(HomeTeacher, { clearHistory: true });
+                        this.$navigateTo(HomeStudent, { clearHistory: true });
                     }
-                })
-                .catch(error => {
-                    if (error.response) {
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                    } else if (error.request) {
-                        console.log(error.request);
-                    } else {
-                        console.log('Error', error.message);
-                    }
-                        console.log(error.config);
-                });
+                }catch(error){
+                    console.log(error);
+                }
             },
             register() {
                 // console.log(this.$store.state.authHeaderApi.Authorization);

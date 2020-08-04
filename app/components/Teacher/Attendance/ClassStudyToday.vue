@@ -10,30 +10,17 @@
                         ios.position="left"/>
             <Label class="action-bar-title" :text="title"/>
         </ActionBar>
-
-        <!-- CONTENT -->
-        <!-- <GridLayout rows="30, 5,auto">
-            <DockLayout row="0" stretchLastChild="false">
-                <Label dock="left" class="text-title" text="Lớp: WD14301"></Label>
-                <Label dock="right" class="text-title" text="Tổng: 43"></Label>
-            </DockLayout>
-            <StackLayout row="1" class="hr" /> -->
-            <!-- <ScrollView row="2" v-show="isData"> -->
-                <ListView row="2" for="(newsD, index) in data.news" class="list-group">
-                    <v-template>
-                        <GridLayout class="list-group-item" rows="*,*" columns="auto, *,*">
-                            <Label row="0" col="0" :text="index + 1 + ' / WD14301'.toUpperCase()" class="text-number-sd"/>
-                            <Image row="1" col="0" :src="newsD.imageSrc" class="thumb img-circle" />
-                            <Label row="1" col="1" style="font-size: 14px" :text="newsD.name + ' - Ca 1'" />
-                            <Button row="1" col="2" text="Điểm danh" :isEnabled="!newsD.checked" @tap="getDetailClass(newsD, index)" class="btn btn-primary"></Button>
-                            <ActivityIndicator row="1" col="2" :busy="newsD.checked"></ActivityIndicator>
-                        </GridLayout>
-                    </v-template>
-                </ListView>
-            <!-- </ScrollView> -->
-
-            <!-- </StackLayout> -->
-        <!-- </GridLayout> -->
+        <ListView row="2" for="(newsD, index) in data.news" class="list-group">
+            <v-template>
+                <GridLayout class="list-group-item" rows="*,*" columns="auto, *,*">
+                    <Label row="0" col="0" :text="index + 1 + ' / WD14301'.toUpperCase()" class="text-number-sd"/>
+                    <Image row="1" col="0" :src="newsD.imageSrc" class="thumb img-circle" />
+                    <Label row="1" col="1" style="font-size: 14px" :text="newsD.name + ' - Ca 1'" />
+                    <Button row="1" col="2" text="Điểm danh" :isEnabled="!newsD.checked" @tap="getDetailClass(newsD, index)" class="btn btn-primary"></Button>
+                    <ActivityIndicator row="1" col="2" :busy="newsD.checked"></ActivityIndicator>
+                </GridLayout>
+            </v-template>
+        </ListView>
     </Page>
 </template>
 
@@ -42,6 +29,7 @@
     import SelectedPageService from "~/shared/selected-page-service";
 
     import Attendance from "./Attendance";
+import { async } from 'rxjs/internal/scheduler/async';
 
     export default {
         mounted() {
@@ -80,31 +68,6 @@
                         {
                             name: "WD14307",
                             imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hu.png",
-                            checked: false
-                        },
-                        {
-                            name: "WD14308",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/it.png",
-                            checked: false
-                        },
-                        {
-                            name: "WD14309",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/jm.png",
-                            checked: false
-                        },
-                        {
-                            name: "WD14310",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ro.png",
-                            checked: false
-                        },
-                        {
-                            name: "WD14311",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ru.png",
-                            checked: false
-                        },
-                        {
-                            name: "WD14312",
-                            imageSrc: "https://play.nativescript.org/dist/assets/img/flags/us.png",
                             checked: false
                         }
                     ];
