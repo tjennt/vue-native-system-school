@@ -1,30 +1,30 @@
 # Nativescript-vue system school TeamproQ
 
-#Author: Nguyễn Tấn Tiền
+# Author: Nguyễn Tấn Tiền
 
-##CLONE: git clone 
+## CLONE: git clone 
 
 
-##INSTALL
+## INSTALL
 ```
 npm install
 ```
 
 
-##START PROJECT
+## START PROJECT
 ```
 tns run android
 tns run ios
 ```
 
-##BUILD APP
+## BUILD APP
 
-###App debug
+### App debug
 ```
 nativescript build android
 ```
 
-###App production
+### App production
 ```
 tns build android --release \
   --key-store-path "$HOME/.keystore" \
