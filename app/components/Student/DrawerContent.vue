@@ -15,7 +15,19 @@
                     <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
                     <Label col="1" text="Trang chủ" class="p-r-10"/>
                 </GridLayout>
+                <GridLayout columns="auto, *"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'StudingSubjects' ? ' selected': '')"
+                            @tap="onNavigationItemTap(StudingSubjects)">
+                    <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
+                    <Label col="1" text="Môn đang học" class="p-r-10"/>
+                </GridLayout>
 
+                <GridLayout columns="auto, *"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'Schedule' ? ' selected': '')"
+                            @tap="onNavigationItemTap(Schedule)">
+                    <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
+                    <Label col="1" text="Thời khóa biểu" class="p-r-10"/>
+                </GridLayout>
 
                 <StackLayout class="hr"/>
 
@@ -33,7 +45,10 @@
 
 <script>
   import Home from "./Home";
+  import StudingSubjects from "./Subjects/StudingSubjects";
+  import Schedule from "./Schedule/Schedule";
   import Login from "../Login";
+
   import * as utils from "~/shared/utils";
   import SelectedPageService from "~/shared/selected-page-service";
 
@@ -45,7 +60,7 @@
     computed: {
         name() {
             // return this.$store.state.shipStore.state.bill;
-            return 'Nguyễn Tiền Heo';
+            return 'Nguyễn Tấn Tiền';
             // console.log(this.$store.state.shipStore)
         },
         roleName() {
@@ -55,12 +70,16 @@
     data() {
       return {
         Home: Home,
+        StudingSubjects: StudingSubjects,
+        Schedule: Schedule,
         Login: Login,
         selectedPage: ""
       };
     },
     components: {
       Home,
+      StudingSubjects,
+      Schedule,
       Login
     },
     methods: {

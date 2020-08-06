@@ -26,6 +26,7 @@
             </GridLayout>
             <!-- <Label row="1" text="hr"> -->
             <StackLayout row="1">
+                
                 <ActivityIndicator :busy="isBusy" />
                 <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
 
@@ -34,11 +35,10 @@
                         style="height:1380px">
                         <v-template>
                             <StackLayout class="card-news" :class="index % 2 == 0 ? '': 'bg-center'">
-                                <!-- <Image :src="newsD.imageSrc" class="thumb img-circle" /> -->
+
                                 <Label :text="newsD.name" class="label-title" textWrap="true" />
                                 <Label :text="newsD.content" class="t-12"  textWrap="true"/>
-                                
-                                <!-- DATE POST NEWS C:\Program Files\AdoptOpenJDK\jdk8u192-b12-->
+
                                 <GridLayout rows="auto" columns="10*,auto">
                                     <Label rows="0" column="1" text="20/03/2020"/>
                                 </GridLayout>
@@ -54,10 +54,11 @@
 
 <script>
     import * as utils from "~/shared/utils";
-    import SelectedPageService from "../../shared/selected-page-service";
+    import SelectedPageService from "~/shared/selected-page-service";
     import NewsDetail from './Components/NewsDetail';
 export default {
     mounted() {
+        SelectedPageService.getInstance().updateSelectedPage("Home")
         this.data.news = [
                     {
                         name: "Thông báo về việc ngừng hỗ trợ sinh viên đóng học phí trực tiếp",

@@ -3,7 +3,7 @@ import Vue from "nativescript-vue";
 import Vuex from "vuex";
 import * as AppSetting from "application-settings";
 
-// Import components: app, login, home
+// Import components: app, login, homex
 import App from "./components/App";
 import Login from "./components/Login";
 import Home from "./components/Home";
