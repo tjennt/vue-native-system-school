@@ -1,7 +1,7 @@
 <template lang="html">
     <GridLayout rows="auto, *" class="nt-drawer__content">
-        <StackLayout row="0" class="header-wit">
-            <Image class="nt-drawer__header-image" src="https://scontent-xsp1-2.xx.fbcdn.net/v/t1.0-9/104869375_1750187698484058_4901889475050639470_n.jpg?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=yvbFXzELaDEAX_nTgo0&_nc_ht=scontent-xsp1-2.xx&oh=5a453bc22bda37e34145dea8a11f4a92&oe=5F2CA9BE"/>
+        <StackLayout row="0" class="header-wit" @tap="onNavigationItemTap(InfoStudent)">
+            <Image class="nt-drawer__header-image" src="~/assets/image-app.jpg"/>
             <Label class="header-wit-text" :text="name"/>
             <Label class="header-wit-footer" :text="roleName"/>
         </StackLayout>
@@ -16,16 +16,22 @@
                     <Label col="1" text="Trang chủ" class="p-r-10"/>
                 </GridLayout>
                 <GridLayout columns="auto, *"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'InfoStudent' ? ' selected': '')"
+                            @tap="onNavigationItemTap(InfoStudent)">
+                    <Label col="0" text.decode="&#xf007;" class="nt-icon far"/>
+                    <Label col="1" text="Thông tin cá nhân" class="p-r-10"/>
+                </GridLayout>
+                <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'StudingSubjects' ? ' selected': '')"
                             @tap="onNavigationItemTap(StudingSubjects)">
-                    <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
+                    <Label col="0" text.decode="&#xf02e;" class="nt-icon far"/>
                     <Label col="1" text="Môn đang học" class="p-r-10"/>
                 </GridLayout>
 
                 <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'Schedule' ? ' selected': '')"
                             @tap="onNavigationItemTap(Schedule)">
-                    <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
+                    <Label col="0" text.decode="&#xf073;" class="nt-icon far"/>
                     <Label col="1" text="Thời khóa biểu" class="p-r-10"/>
                 </GridLayout>
 
@@ -34,7 +40,7 @@
                 <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'Logout' ? ' selected': '')"
                             @tap="onNavigationItemTap(Login)">
-                    <Label col="0" text.decode="&#xf013;" class="nt-icon fas"/>
+                    <Label col="0" text.decode="&#xf2f5;" class="nt-icon fas"/>
                     <Label col="1" text="Đăng xuất" class="p-r-10 logout"/>
                 </GridLayout>
             </StackLayout>
@@ -48,6 +54,7 @@
   import StudingSubjects from "./Subjects/StudingSubjects";
   import Schedule from "./Schedule/Schedule";
   import Login from "../Login";
+  import InfoStudent from "./Info/InfoStudent";
 
   import * as utils from "~/shared/utils";
   import SelectedPageService from "~/shared/selected-page-service";
@@ -55,7 +62,8 @@
   export default {
     mounted() {
       SelectedPageService.getInstance().selectedPage$
-        .subscribe((selectedPage) => this.selectedPage = selectedPage);
+        .subscribe((selectedPage) => this.selectedPage = selectedPage)
+      console.log(this.selectedPage)
     },
     computed: {
         name() {
@@ -73,6 +81,7 @@
         StudingSubjects: StudingSubjects,
         Schedule: Schedule,
         Login: Login,
+        InfoStudent: InfoStudent,
         selectedPage: ""
       };
     },
@@ -80,7 +89,8 @@
       Home,
       StudingSubjects,
       Schedule,
-      Login
+      Login,
+      InfoStudent
     },
     methods: {
       onNavigationItemTap(component) {

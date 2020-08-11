@@ -26,7 +26,7 @@
                 <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'Logout' ? ' selected': '')"
                             @tap="onNavigationItemTap(Login)">
-                    <Label col="0" text.decode="&#xf013;" class="nt-icon fas"/>
+                    <Label col="0" text.decode="&#xf2f5;" class="nt-icon fas"/>
                     <Label col="1" text="Đăng xuất" class="p-r-10 logout"/>
                 </GridLayout>
             </StackLayout>

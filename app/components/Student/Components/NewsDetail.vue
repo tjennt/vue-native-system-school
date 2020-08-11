@@ -24,7 +24,7 @@
             class="description-label" />
           </StackLayout>
         </StackLayout>
-		</ScrollView>
+		  </ScrollView>
     </Page>
 
 </template>
