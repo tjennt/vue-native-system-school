@@ -66,7 +66,7 @@ Vue.mixin({
 
     // CHECK LOCALE
     let getLocale = AppSetting.getString('locale')
-    let locale = en
+    let locale = vi
     if(getLocale == 'vi'){
       locale = vi
     }
