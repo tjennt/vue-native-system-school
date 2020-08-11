@@ -1,7 +1,9 @@
 <template>
      <Page class="bg-main">
       <ActionBar class="action-bar-news bg-main" :flat="isFlat">
-        <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="$navigateBack"/>
+        <NavigationButton text="" android.systemIcon="ic_menu_back" @tap="$navigateBack"/>
+        <!-- <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="$navigateBack"/> -->
+        <!-- <NavigationButton v-show="!isFlat" text="" android.systemIcon="ic_menu_back" @tap="$navigateBack"/> -->
 
         <Label :text="titleAction" class="hidden" ref="topTitle" fontSize="17" verticalAlignment="center" />
         <!-- <ActionItem @tap="someMethod" ios.systemIcon="13" ios.position="right" text="refresh" android.position="popup">
@@ -29,9 +31,9 @@
 
 <script>
 export default {
-  props: ['news'],
+  props: ['data'],
   data() {
-    return { 
+    return {
       titleAction: "Đóng học phí học kì fall 2030",
       title: "Thông báo",
       isFlat: true
