@@ -11,18 +11,20 @@
             <ListView for="(newsD, index) in news" @itemTap="newsDetailM"
                 style="height:1380px">
                 <v-template>
-                    <StackLayout class="card-news" :class="index % 2 == 0 ? '': 'bg-center'">
+                        <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-sec-wit': 'shadow-main-wit'">
 
-                        <Label :text="newsD.name" class="label-title" textWrap="true" />
-                        <Label :text="newsD.content" class="t-12"  textWrap="true"/>
+                            <Label :text="newsD.name" class="label-title" textWrap="true" />
+                            <Label :text="newsD.content" class="t-12"  textWrap="true"/>
 
-                        <GridLayout rows="auto" columns="10*,auto">
-                            <GridLayout row="0" column="1" columns="*, *">
-                                <Label col="0" text.decode="&#xf017;" class="nt-icon far"/>
-                                <Label col="1" text="20/03/2020" class="p-r-1"/>
+                            <GridLayout rows="auto" columns="10*,auto">
+                                <GridLayout row="0" column="1" columns="*, *">
+                                    <Label col="0" text.decode="&#xf017;" class="nt-icon far"/>
+                                    <Label col="1" text="20/03/2020" class="p-r-1"/>
+                                </GridLayout>
                             </GridLayout>
-                        </GridLayout>
-                    </StackLayout>
+
+                        </StackLayout>
+                        <!-- <StackLayout class="hr"/> -->
                 </v-template>
             </ListView>
         </ScrollView>
@@ -80,5 +82,12 @@
 </script>
 
 <style lang="scss">
-    
+    .shadow-main-wit {
+        padding: 2;
+        background: linear-gradient(to top, rgba(6, 67, 124, 0.2), rgba(0,0,0, 0));
+    }
+    .shadow-sec-wit {
+        padding: 2;
+        background: linear-gradient(to top, rgba(2, 250, 23, 0.219), rgba(0,0,0, 0));
+    }
 </style>
