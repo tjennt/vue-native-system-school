@@ -11,7 +11,7 @@
             <ListView for="(newsD, index) in news" @itemTap="newsDetailM"
                 style="height:1380px">
                 <v-template>
-                        <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-sec-wit': 'shadow-main-wit'">
+                        <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
 
                             <Label :text="newsD.name" class="label-title" textWrap="true" />
                             <Label :text="newsD.content" class="t-12"  textWrap="true"/>

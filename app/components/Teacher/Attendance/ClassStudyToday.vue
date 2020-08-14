@@ -92,7 +92,8 @@ import { async } from 'rxjs/internal/scheduler/async';
                 utils.showDrawer();
             },
             getDetailClass(news, index) {
-                this.data.news[parseInt(index)].checked = true;
+                this.data.news[parseInt(index)].checked = true
+
                 setTimeout(()=> {
                     this.$navigateTo(this.Attendance, {
                         // animated: true,
@@ -105,9 +106,9 @@ import { async } from 'rxjs/internal/scheduler/async';
                             foo: 'bar',
                         }
                     }).then(()=> {
-                        this.data.news[parseInt(index)].checked = false;
-                    });
-                }, 100);
+                        this.data.news[parseInt(index)].checked = false
+                    })
+                }, 100)
             }
         }
     }

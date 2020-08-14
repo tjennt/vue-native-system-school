@@ -32,6 +32,8 @@ import {mapState, mapActions} from 'vuex';
 import vi from './assets/lang/vi.json';
 import en from './assets/lang/en.json';
 
+// Import chart
+
 
 
 Vue.config.silent = (TNS_ENV === 'production');
@@ -39,10 +41,11 @@ Vue.config.silent = (TNS_ENV === 'production');
 Vue.use(Vuex);
 Vue.use(RadSideDrawer);
 
+
 Vue.mixin({
   computed: {
     ...mapState('auth',['domain']),
-    // CHECK LOCALSTORAGE AND VUEX
+    // CHECK LOCALSTORAGE AND VUEXz
     checkLogin() {
       let token = AppSetting.getString('token');
       if(token){

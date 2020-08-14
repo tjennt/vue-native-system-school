@@ -125,12 +125,12 @@
             async login() {
 
                 // TEST DEVICE NOT HTTP
-                    // AppSetting.setString('token', 'loginSuccess.data.Notification.Token');
-                    // this.setChangeLogin(true);
-                    // this.setToken('loginSuccess.data.Notification.Token');
-                    // // this.$navigateTo(HomeTeacher, { clearHistory: true });
-                    // this.$navigateTo(HomeStudent, { clearHistory: true });
-                    // return;
+                    AppSetting.setString('token', 'loginSuccess.data.Notification.Token');
+                    this.setChangeLogin(true);
+                    this.setToken('loginSuccess.data.Notification.Token');
+                    // this.$navigateTo(HomeTeacher, { clearHistory: true });
+                    this.$navigateTo(HomeStudent, { clearHistory: true });
+                    return;
                 // END TEST DEVICE
 
                 try{

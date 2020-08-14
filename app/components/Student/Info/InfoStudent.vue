@@ -58,7 +58,7 @@
                     </GridLayout>
                     
                     <GridLayout class="info-grid-button" row="7" columns="auto, auto, auto">
-                        <Button col="0" text="Xem điểm" class="btn btn-primary"></Button>
+                        <Button col="0" text="Thống kê" class="btn btn-primary" @tap="goComponent(StatisticSubjectStudied)"></Button>
                         <Button col="1" text="Lịch học" class="btn btn-primary"></Button>
                         <Button col="2" text="Điểm danh" class="btn btn-primary"></Button>
 
@@ -72,20 +72,27 @@
 <script>
     import * as utils from "~/shared/utils";
     import SelectedPageService from "~/shared/selected-page-service";
-    
+    import StatisticSubjectStudied from "./StatisticSubjectStudied";
+
     export default {
         mounted() {
             SelectedPageService.getInstance().updateSelectedPage("InfoStudent")
         },
         data() {
             return {
-                title: 'THÔNG TIN SINH VIÊN'
+                title: 'THÔNG TIN SINH VIÊN',
+                StatisticSubjectStudied: StatisticSubjectStudied
             }
         },
         methods: {
             onDrawerButtonTap() {
                 utils.showDrawer()
             },
+            goComponent(component){
+                this.$showModal(component, {
+                    fullscreen: true
+                })
+            }
         }
     }
 </script>
@@ -93,7 +100,6 @@
 <style lang="scss">
     .border-image-user {
         width: 130;
-        // border-width:1;
         border-color: #2a4054;
         text-align: center;
         padding: 2;
