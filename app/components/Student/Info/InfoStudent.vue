@@ -57,11 +57,11 @@
                         <Label col="2" class="label-alert" text="  Đang học  "></Label>
                     </GridLayout>
                     
-                    <GridLayout class="info-grid-button" row="7" columns="auto, auto, auto">
-                        <Button col="0" text="Thống kê" class="btn btn-primary" @tap="goComponent(StatisticSubjectStudied)"></Button>
-                        <Button col="1" text="Lịch học" class="btn btn-primary"></Button>
-                        <Button col="2" text="Điểm danh" class="btn btn-primary"></Button>
-
+                    <GridLayout class="info-grid-button" row="7" columns="auto">
+                        <Button col="0" text="THỐNG KÊ" class="btn btn-primary" @tap="goComponent(StatisticSubjectStudied)"></Button>
+                        <!-- <Button col="1" text="Lịch học" class="btn btn-primary"></Button>
+                        <Button col="2" text="Điểm danh" class="btn btn-primary"></Button> -->
+ 
                     </GridLayout>
                 </GridLayout>
             </GridLayout>
@@ -124,7 +124,8 @@
         color: #2a4054;
     }
     .info-grid-button {
-        padding: 50 0 0 0;
+        // margin-left: 0;
+        padding: 40 0 0 0;
         color: #2a4054;
     }
     .ml-info {

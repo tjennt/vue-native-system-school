@@ -18,7 +18,7 @@
             <ScrollView ref="scrollView" v-show="isData">
                 <ListView for="(subject, index) in subjects" @itemTap="getDetail" style="height:1600px">
                     <v-template>
-                        <StackLayout class="card-news" :class="index % 2 == 0 ? '': 'bg-center'">
+                        <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
                             <!-- <Image :src="newsD.imageSrc" class="thumb img-circle" /> -->
                             <Label :text=" ++index + '/ ' + subject.name" class="label-title" textWrap="true" />
                             <Label :text="subject.content" class="t-12"  textWrap="true"/>

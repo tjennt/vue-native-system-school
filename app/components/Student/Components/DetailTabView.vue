@@ -72,7 +72,7 @@
         },
         methods: {
             newsDetailM(args) {
-                this.$navigateTo(this.newsDetail, { 
+                this.$showModal(this.newsDetail, { 
                     fullscreen: true,  
                     props: { data: args.item }
                 });
@@ -82,12 +82,5 @@
 </script>
 
 <style lang="scss">
-    .shadow-main-wit {
-        padding: 2;
-        background: linear-gradient(to top, rgba(6, 67, 124, 0.2), rgba(0,0,0, 0));
-    }
-    .shadow-sec-wit {
-        padding: 2;
-        background: linear-gradient(to top, rgba(2, 250, 23, 0.219), rgba(0,0,0, 0));
-    }
+
 </style>

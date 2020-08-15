@@ -21,7 +21,7 @@ import DrawerContentTeacher from "./components/Teacher/DrawerContent";
 
 
 // Import menu app
-// import DrawerContent from "./components/DrawerContent";s
+// import DrawerContent from "./components/DrawerContent";x
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 
 // Import data vuex
@@ -45,7 +45,7 @@ Vue.use(RadSideDrawer);
 Vue.mixin({
   computed: {
     ...mapState('auth',['domain']),
-    // CHECK LOCALSTORAGE AND VUEXz
+    // CHECK LOCALSTORAGE AND VUEX
     checkLogin() {
       let token = AppSetting.getString('token');
       if(token){
