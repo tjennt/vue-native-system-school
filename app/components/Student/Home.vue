@@ -10,10 +10,13 @@
                         ios.position="left"/>
             <Label class="action-bar-title" :text="title"/>
         </ActionBar>
+        <!-- END ACCTION BAR -->
 
         <!-- CONTENT -->
+        
         <!-- <ListNewsCustom /> -->
         <ListNewsTabView />
+    
     </Page>
 </template>
 

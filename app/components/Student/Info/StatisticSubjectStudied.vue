@@ -7,6 +7,7 @@
 
         </ActionBar>
         <StackLayout>
+            <Label text="THONG KE" textWrap="true" />
             
         </StackLayout>
       </Page>

@@ -6,29 +6,24 @@
         
         <!-- IF NOT DATA -->
         <!-- <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label> -->
+        <ListView  v-show="isData" for="(newsD, index) in news" @itemTap="newsDetailM">
+            <v-template>
+                    <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
 
-        <ScrollView ref="scrollView" v-show="isData">
-            <ListView for="(newsD, index) in news" @itemTap="newsDetailM"
-                style="height:1380px">
-                <v-template>
-                        <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
+                        <Label :text="newsD.name" class="label-title" textWrap="true" />
+                        <Label :text="newsD.content" class="t-12"  textWrap="true"/>
 
-                            <Label :text="newsD.name" class="label-title" textWrap="true" />
-                            <Label :text="newsD.content" class="t-12"  textWrap="true"/>
-
-                            <GridLayout rows="auto" columns="10*,auto">
-                                <GridLayout row="0" column="1" columns="*, *">
-                                    <Label col="0" text.decode="&#xf017;" class="nt-icon far"/>
-                                    <Label col="1" text="20/03/2020" class="p-r-1"/>
-                                </GridLayout>
+                        <GridLayout rows="auto" columns="10*,auto">
+                            <GridLayout row="0" column="1" columns="*, *">
+                                <Label col="0" text.decode="&#xf017;" class="nt-icon far"/>
+                                <Label col="1" text="20/03/2020" class="p-r-1"/>
                             </GridLayout>
+                        </GridLayout>
 
-                        </StackLayout>
-                        <!-- <StackLayout class="hr"/> -->
-                </v-template>
-            </ListView>
-        </ScrollView>
-
+                    </StackLayout>
+                    <!-- <StackLayout class="hr"/> -->
+            </v-template>
+        </ListView>
     <!-- </Page> -->
 </template>
 
@@ -72,7 +67,7 @@
         },
         methods: {
             newsDetailM(args) {
-                this.$showModal(this.newsDetail, { 
+                this.$navigateTo(this.newsDetail, { 
                     fullscreen: true,  
                     props: { data: args.item }
                 });

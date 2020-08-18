@@ -11,29 +11,26 @@
         </ActionBar>
 
         <!-- CONTENT -->
-        <GridLayout rows="auto, auto" class="bg-fff">
-            <ActivityIndicator :busy="isBusy" />
-            <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
-
-            <ScrollView ref="scrollView" v-show="isData">
-                <ListView for="(date, index) in data1" style="height: 1600px">
-                    <v-template>
-                        <StackLayout class="card-news">
-                          <!-- :class="index % 2 == 0 ? '': 'bg-center'" -->
-                          <GridLayout rows="auto, auto" columns="auto, 10*, auto">
-                            <Label row="0" column="0" :text="date.name" class="label-title bg-main date-of-week" textWrap="true" />
-                            <StackLayout row="0" column="1">
-                                <Label :text="date.nameSub" class="label-title" textWrap="true" />
-                                <Label :text="'CA 3 | ' + date.date" textWrap="true" />
-                            
-                            </StackLayout>
-                            <Label row="0" column="2" :text="'Giảng viên: ' + date.teacher" textWrap="true"/>
-                            <!-- <Label rows="0" column="1" :text="date.date"/> -->
-                          </GridLayout>
+        <GridLayout rows="*" class="bg-fff">
+            <ActivityIndicator row="0"  :busy="isBusy" />
+            <Label row="0" v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
+            <ListView row="0" v-show="isData" for="(date, index) in data1">
+                <v-template>
+                    <StackLayout class="card-news">
+                        <!-- :class="index % 2 == 0 ? '': 'bg-center'" -->
+                        <GridLayout rows="auto, auto" columns="auto, 10*, auto">
+                        <Label row="0" column="0" :text="date.name" class="label-title bg-main date-of-week" textWrap="true" />
+                        <StackLayout row="0" column="1">
+                            <Label :text="date.nameSub" class="label-title" textWrap="true" />
+                            <Label :text="'CA 3 | ' + date.date" textWrap="true" />
+                        
                         </StackLayout>
-                    </v-template>
-                </ListView>
-            </ScrollView>
+                        <Label row="0" column="2" :text="'Giảng viên: ' + date.teacher" textWrap="true"/>
+                        <!-- <Label rows="0" column="1" :text="date.date"/> -->
+                        </GridLayout>
+                    </StackLayout>
+                </v-template>
+            </ListView>
         </GridLayout>
     </Page>    
 </template>

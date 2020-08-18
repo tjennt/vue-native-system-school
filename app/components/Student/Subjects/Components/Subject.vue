@@ -1,5 +1,5 @@
 <template>
-     <Page class="bg-main">
+     <Page class="bg-main bg-fff">
       <ActionBar class="bg-main" :flat="true">
         <NavigationButton text="" android.systemIcon="ic_menu_back" @tap="$navigateBack"/>
 
@@ -9,26 +9,20 @@
 		  </ActionBar>
 
         <!-- CONTENT -->
-        <GridLayout rows="auto, auto" class="bg-fff">
-            <ActivityIndicator :busy="isBusy" />
-            <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
+        <ActivityIndicator :busy="isBusy" />
+        <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
 
-            <ScrollView ref="scrollView" v-show="isData">
-                <ListView for="(date, index) in data1" @itemTap="getDetail" style="height: 1600px">
-                    <v-template>
-                        <StackLayout class="card-news">
-                          <!-- :class="index % 2 == 0 ? '': 'bg-center'" -->
-                          <GridLayout rows="auto, auto" columns="auto, 10*, auto">
-                            <Label row="0" column="0" :text="date.name" class="label-title bg-main date-of-week" textWrap="true" />
-                            <Label row="0" column="1" :text="' | ' + date.date" class="label-title" textWrap="true" />
-                            <Label row="0" column="2" :text="'Giảng viên: ' + date.teacher" textWrap="true"/>
-                            <!-- <Label rows="0" column="1" :text="date.date"/> -->
-                          </GridLayout>
-                        </StackLayout>
-                    </v-template>
-                </ListView>
-            </ScrollView>
-        </GridLayout>
+        <ListView v-show="isData" for="(date, index) in data1" @itemTap="getDetail">
+            <v-template>
+                <StackLayout class="card-news">
+                  <GridLayout rows="auto, auto" columns="auto, 10*, auto">
+                    <Label row="0" column="0" :text="date.name" class="label-title bg-main date-of-week" textWrap="true" />
+                    <Label row="0" column="1" :text="' | ' + date.date" class="label-title" textWrap="true" />
+                    <Label row="0" column="2" :text="'Giảng viên: ' + date.teacher" textWrap="true"/>
+                  </GridLayout>
+                </StackLayout>
+            </v-template>
+        </ListView>
     </Page>
 
 </template>

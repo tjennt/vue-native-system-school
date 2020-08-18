@@ -12,26 +12,26 @@
         </ActionBar>
 
         <!-- CONTENT -->
-        <GridLayout rows="auto, auto">
-            <ActivityIndicator :busy="isBusy" />
-            <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
-            <ScrollView ref="scrollView" v-show="isData">
-                <ListView for="(subject, index) in subjects" @itemTap="getDetail" style="height:1600px">
-                    <v-template>
-                        <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
-                            <!-- <Image :src="newsD.imageSrc" class="thumb img-circle" /> -->
-                            <Label :text=" ++index + '/ ' + subject.name" class="label-title" textWrap="true" />
-                            <Label :text="subject.content" class="t-12"  textWrap="true"/>
-                            
-                            <!-- DATE POST NEWS C:\Program Files\AdoptOpenJDK\jdk8u192-b12-->
-                            <GridLayout rows="auto" columns="10*,auto">
-                                <Label rows="0" column="1" text="20/03/2020 - 20/08/2020"/>
-                            </GridLayout>
-                        </StackLayout>
-                    </v-template>
-                </ListView>
-            </ScrollView>
+        <GridLayout rows="*" columns="*">
+            <ActivityIndicator row="0" column="0" :busy="isBusy" />
+            <Label row="0" column="0" v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label>
+        
+            <ListView row="0" column="0" v-show="isData" for="(subject, index) in subjects" @itemTap="getDetail">
+                <v-template>
+                    <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
+                        
+                        <Label :text=" ++index + '/ ' + subject.name" class="label-title" textWrap="true" />
+                        <Label :text="subject.content" class="t-12"  textWrap="true"/>
+                        
+                        <!-- DATE POST NEWS-->
+                        <GridLayout rows="auto" columns="10*,auto">
+                            <Label rows="0" column="1" text="20/03/2020 - 20/08/2020"/>
+                        </GridLayout>
+                    </StackLayout>
+                </v-template>
+            </ListView>
         </GridLayout>
+        <!-- END CONTENT -->
     </Page>
 </template>
 
