@@ -127,10 +127,14 @@
     opacity: 0.5;
 }
 .shadow-main-wit {
-    padding: 2;
-    background: linear-gradient(to top, rgba(6, 67, 124, 0.2), rgba(0,0,0, 0));
+    // text-align: center;
+    padding-left: 8;
+    border-radius: 15;
+    // border-bottom-color: #396A8B;
+    // background: linear-gradient(to top, rgba(6, 67, 124, 0.2), rgba(0,0,0, 0));
+    background: rgba(6, 67, 124, 0.1);
 }
 .shadow-sec-wit {
     padding: 2;
-    background: linear-gradient(to top, rgba(2, 250, 23, 0.219), rgba(0,0,0, 0));
+    // background: linear-gradient(to top, rgba(2, 250, 23, 0.219), rgba(0,0,0, 0));
 }

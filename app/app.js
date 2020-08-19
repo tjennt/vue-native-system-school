@@ -21,7 +21,7 @@ import DrawerContentTeacher from "./components/Teacher/DrawerContent";
 
 
 // Import menu app
-// import DrawerContent from "./components/DrawerContent";
+// import DrawerContent from "./components/DrawerContent";s
 import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 
 // Import data vuex

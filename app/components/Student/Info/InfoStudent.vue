@@ -26,34 +26,34 @@
                         </GridLayout>
 
                         <GridLayout class="info-grid" row="1" columns="auto, *">
-                            <Label col="0" text.decode="&#xf50c;" class="nt-icon m-t-5 fab"/>
+                            <Label col="0" text.decode="&#xf50c;" class="label-icon nt-icon m-t-5 fab"/>
                             <Label col="1" class="label-text" text="  PS09110"></Label>
                         </GridLayout>
                         
                         <GridLayout class="info-grid" row="2" columns="auto, *">
-                            <Label col="0" text.decode="&#xf658;" class="nt-icon m-t-5 fas"/>
+                            <Label col="0" text.decode="&#xf658;" class="label-icon nt-icon m-t-5 fas"/>
                             <Label col="1" class="label-text" text="  tienntps09110@fpt.edu.vn"></Label>
                         </GridLayout>
                         
                         <GridLayout class="info-grid" row="3" columns="auto, *">
-                            <Label col="0" text.decode="&#xf095;" class="nt-icon m-t-5 fas"/>
+                            <Label col="0" text.decode="&#xf095;" class="label-icon nt-icon m-t-5 fas"/>
                             <Label col="1" class="label-text" text="  090-231-8374"></Label>
                         </GridLayout>
 
                         <GridLayout class="info-grid" row="4" columns="auto, auto, *">
-                            <Label col="0" text.decode="&#xf52b;" class="nt-icon m-t-5 fas"/>
+                            <Label col="0" text.decode="&#xf52b;" class="label-icon nt-icon m-t-5 fas"/>
                             <Label col="1" class="label-text" text="  Lớp             :"></Label>
                             <Label col="2" class="label-text" text="  WD14301"></Label>
                         </GridLayout>
 
                         <GridLayout class="info-grid" row="5" columns="auto, auto, *">
-                            <Label col="0" text.decode="&#xf5a2;" class="nt-icon m-t-5 fas"/>
+                            <Label col="0" text.decode="&#xf5a2;" class="label-icon nt-icon m-t-5 fas"/>
                             <Label col="1" class="label-text" text="  Niên học     :"></Label>
                             <Label col="2" class="label-text" text="  2018 - 2020"></Label>
                         </GridLayout>
 
                         <GridLayout class="info-grid" row="6" columns="auto, auto, auto">
-                            <Label col="0" text.decode="&#xf21e;" class="nt-icon m-t-5 fas"/>
+                            <Label col="0" text.decode="&#xf21e;" class="label-icon nt-icon m-t-5 fas"/>
                             <Label col="1" class="label-text" text="  Trạng thái   :  "></Label>
                             <Label col="2" class="label-alert" text="  Đang học  "></Label>
                         </GridLayout>
@@ -108,7 +108,7 @@
         background: linear-gradient(to left, rgba(42,64,84, .5), rgba(0,0,0, 0));
     }
     .label-icon {
-        font-size: 25;
+        font-size: 23;
     }
     .label-text {
         font-size: 22;

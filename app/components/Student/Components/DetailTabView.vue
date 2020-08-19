@@ -8,9 +8,11 @@
         <!-- <Label v-show="isData === false" class="page__content-notfound" text="Không có dữ liệu"></Label> -->
         <ListView  v-show="isData" for="(newsD, index) in news" @itemTap="newsDetailM">
             <v-template>
-                    <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
+                    <StackLayout class="card-news m-t-5">
 
-                        <Label :text="newsD.name" class="label-title" textWrap="true" />
+                        <StackLayout :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
+
+                        <Label :text="newsD.name" class="label-title" textWrap="false" />
                         <Label :text="newsD.content" class="t-12"  textWrap="true"/>
 
                         <GridLayout rows="auto" columns="10*,auto">
@@ -21,6 +23,8 @@
                         </GridLayout>
 
                     </StackLayout>
+
+                    </StackLayout>
                     <!-- <StackLayout class="hr"/> -->
             </v-template>
         </ListView>
@@ -29,6 +33,7 @@
 
 <script>
     import newsDetail from "./NewsDetail";
+    var enums = require("tns-core-modules/ui/enums");
     export default {
         mounted() {
             // this.news = [];
@@ -68,6 +73,9 @@
         methods: {
             newsDetailM(args) {
                 this.$navigateTo(this.newsDetail, { 
+                    transition: {
+                        name: 'slide'
+                    },
                     fullscreen: true,  
                     props: { data: args.item }
                 });
