@@ -1,5 +1,5 @@
 <template>
-    <Page actionBarHidden="true">
+    <Page class="m-t-30" actionBarHidden="true">
         <ScrollView class="nt-drawer__body">
             <FlexboxLayout class="page">
                 <StackLayout class="form">

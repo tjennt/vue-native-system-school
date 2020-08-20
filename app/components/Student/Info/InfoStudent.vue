@@ -18,7 +18,7 @@
                     <Image row="0" col="0" class="border-image-user" src="~/assets/images/anhthe.jpg"/>
                     
                     <!-- INFO STUDENT -->
-                    <GridLayout class="ml-info" row="1" col="0" rows="*, *, *, *, *, *, *" columns="*">
+                    <GridLayout class="ml-info" row="1" col="0" rows="*, *, *, *, *, *, *,*" columns="*">
 
                         <GridLayout class="info-grid" row="0" columns="auto, *">
                             <Label col="0" text.decode="&#xf007;" class="label-icon nt-icon m-t-5 far"/>
@@ -58,8 +58,8 @@
                             <Label col="2" class="label-alert" text="  Đang học  "></Label>
                         </GridLayout>
                         
-                        <GridLayout class="info-grid-button" row="7" columns="auto">
-                            <Button col="0" text="THỐNG KÊ" class="btn btn-primary" @tap="goComponent(StatisticSubjectStudied)"></Button>
+                        <GridLayout class="info-grid" row="7" columns="auto">
+                            <Button col="0" text="THỐNG KÊ" class="btn btn-primary button-info-statis" @tap="goComponent(StatisticSubjectStudied)"></Button>
                             <!-- <Button col="1" text="Lịch học" class="btn btn-primary"></Button>
                             <Button col="2" text="Điểm danh" class="btn btn-primary"></Button> -->
     
@@ -125,9 +125,10 @@
         padding: 5 0 5 0;
         color: #2a4054;
     }
+    .button-info-statis {
+        padding: 0 15 0 15;
+    }
     .info-grid-button {
-        // margin-left: 0;
-        padding: 40 0 0 0;
         color: #2a4054;
     }
     .ml-info {

@@ -18,15 +18,17 @@
         
             <ListView row="0" column="0" v-show="isData" for="(subject, index) in subjects" @itemTap="getDetail">
                 <v-template>
-                    <StackLayout class="card-news m-t-5" :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
+                    <StackLayout class="card-news m-t-5">
+                        <StackLayout :class="index % 2 == 0 ? 'shadow-main-wit': 'shadow-main-wit'">
                         
-                        <Label :text=" ++index + '/ ' + subject.name" class="label-title" textWrap="true" />
-                        <Label :text="subject.content" class="t-12"  textWrap="true"/>
-                        
-                        <!-- DATE POST NEWS-->
-                        <GridLayout rows="auto" columns="10*,auto">
-                            <Label rows="0" column="1" text="20/03/2020 - 20/08/2020"/>
-                        </GridLayout>
+                            <Label :text=" ++index + '/ ' + subject.name" class="label-title" textWrap="true" />
+                            <Label :text="subject.content" class="t-12"  textWrap="true"/>
+                            
+                            <!-- DATE POST NEWS-->
+                            <GridLayout rows="auto" columns="10*,auto">
+                                <Label rows="0" column="1" text="20/03/2020 - 20/08/2020"/>
+                            </GridLayout>
+                        </StackLayout>
                     </StackLayout>
                 </v-template>
             </ListView>

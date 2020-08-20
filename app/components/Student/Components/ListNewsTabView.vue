@@ -1,7 +1,6 @@
 <template>
-    <TabView 
-        tabTextColor="#000000"
-        selectedTabTextColor="#2a4054"
+    <TabView
+        className="tab-view-home"
         :selectedIndex="selectedIndex"
         @selectedIndexChange="indexChange"
     >
@@ -40,5 +39,10 @@ export default {
 </script>
 
 <style lang="scss">
-    
+    .tab-view-home {
+        tab-text-color: #000000;
+        selected-tab-text-color: #2a4054;
+        android-selected-tab-highlight-color: #2a4054;
+        border-radius: 10;
+    }
 </style>
