@@ -45,6 +45,10 @@
                     <Button :text="isLoggingIn ? locale.buttonLogin : locale.buttonRegister" :isEnabled="!processing"
                         @tap="submit" class="btn btn-primary fz-20 m-t-20"></Button>
 
+
+                    <!-- LOGIN GOOGLE -->
+                    <Button text="GOOGLE" @tap="loginGoogle" class="btn btn-primary fz-20 m-t-20"></Button>
+
                     <!-- FORGOT PASSWORD PROMORT  -->
                     <Label *v-show="isLoggingIn" :text="locale.buttonForgotPassword"
                         class="login-label" @tap="forgotPassword()"></Label>
@@ -76,6 +80,8 @@
 
     // IMPORT VUEX
     import {mapState, mapActions} from 'vuex';
+
+    var AuthService = require("~/service/auth-service");
 
     export default {
         data() {
@@ -123,6 +129,9 @@
                 } else {
                     this.register()
                 }
+            },
+            loginGoogle() {
+                AuthService.tnsOauthLogin("google")
             },
             async login() {
 
