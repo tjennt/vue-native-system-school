@@ -63,7 +63,7 @@ Vue.mixin({
       return this.Student.Home;
     },
 
-    // DRAWE MENU ROLE
+    // DRAWE MENU ROLEs
     drawerContent() {
       return this.Student.DrawerContent;
     }

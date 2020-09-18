@@ -72,7 +72,7 @@
     import Home from "./Home";
     import HomeStudent from "./Student/Home";
     import HomeTeacher from "./Teacher/Home";
-
+    import LoginGoogle from "./LoginGoogle";
 
     import * as utils from "~/shared/utils";
     import * as AppSetting from "application-settings";
@@ -131,7 +131,11 @@
                 }
             },
             loginGoogle() {
-                AuthService.tnsOauthLogin("google")
+                // AuthService.tnsOauthLogin("facebook")
+                // this.$navigateTo(LoginGoogle, { clearHistory: true})
+                this.$showModal(LoginGoogle, {
+                    fullscreen: true
+                })
             },
             async login() {
 

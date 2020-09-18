@@ -31,8 +31,8 @@ function configureOAuthProviderGoogle() {
 function configureOAuthProviderFacebook() {
     var facebookProviderOptions = {
         openIdSupport: "oid-none",
-        clientId: "691208554415645",
-        clientSecret: "d8725ac416fa1bb1917ccffd1670e3c6",
+        clientId: "694904407909206",
+        clientSecret: "7305cebb64f445de65331271ce857c6c",
         redirectUri: "https://www.facebook.com/connect/login_success.html",
         scopes: ["email"]
     };
