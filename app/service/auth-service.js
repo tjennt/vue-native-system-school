@@ -9,20 +9,16 @@ function configureOAuthProviders() {
     var googleProvider = configureOAuthProviderGoogle();
     var facebookProvider = configureOAuthProviderFacebook();
     nativescript_oauth2_1.configureTnsOAuth([microsoftProvider, googleProvider, facebookProvider]);
-    // nativescript_oauth2_1.configureTnsOAuth([googleProvider]);
 
 }
 exports.configureOAuthProviders = configureOAuthProviders;
-// 598161901649-q3jl8h0eeqbbnd8ko6541k3u4jvdc5mb.apps.googleusercontent.com
+
 function configureOAuthProviderGoogle() {
     var googleProviderOptions = {
         openIdSupport: "oid-full",
-        // clientId: "598161901649-dtlh4c20osdlll4qq6i2140jcdckqk9h.apps.googleusercontent.com",
-        // redirectUri: "apps.googleusercontent.com.598161901649-dtlh4c20osdlll4qq6i2140jcdckqk9h:/auth",
-        // urlScheme: "apps.googleusercontent.com.598161901649-dtlh4c20osdlll4qq6i2140jcdckqk9h",
-        clientId: "598161901649-tpqdibcoq8ieon70ukuhgljvhcg2qt6e.apps.googleusercontent.com",
-        redirectUri: "apps.googleusercontent.com.598161901649-tpqdibcoq8ieon70ukuhgljvhcg2qt6e:/auth",
-        urlScheme: "apps.googleusercontent.com.598161901649-tpqdibcoq8ieon70ukuhgljvhcg2qt6e",
+        clientId: "598161901649-dtlh4c20osdlll4qq6i2140jcdckqk9h.apps.googleusercontent.com",
+        redirectUri: "com.googleusercontent.apps.598161901649-dtlh4c20osdlll4qq6i2140jcdckqk9h:/auth",
+        urlScheme: "com.googleusercontent.apps.598161901649-dtlh4c20osdlll4qq6i2140jcdckqk9h",
         scopes: ["email"]
     };
     var googleProvider = new providers_1.TnsOaProviderGoogle(googleProviderOptions);
@@ -43,7 +39,6 @@ function configureOAuthProviderMicrosoft() {
     var microsoftProviderOptions = {
         openIdSupport: "oid-full",
         clientId: "f376fa87-64a9-49a1-8b56-e0d48fc0810b",
-        // redirectUri: "urn:ietf:wg:oauth:2.0:oob",
         redirectUri: "msalf376fa87-64a9-49a1-8b56-e0d48fc0810b://auth",
         urlScheme: "msalf376fa87-64a9-49a1-8b56-e0d48fc0810b",
         scopes: ["https://outlook.office.com/mail.read"]
@@ -57,10 +52,12 @@ function tnsOauthLogin(providerType) {
         if (error) {
             console.error("back to main page with error: ");
             console.error(error);
+            return false;
         }
         else {
             console.log("back to main page with access token: ");
-            console.log(tokenResult);
+            // console.log(tokenResult);
+            return tokenResult;
         }
     });
 }

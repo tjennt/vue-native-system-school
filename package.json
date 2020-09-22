@@ -13,6 +13,7 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/theme": "~2.3.0",
+    "@nota/nativescript-webview-ext": "^6.5.4",
     "@vue/devtools": "^5.3.3",
     "axios": "^0.19.2",
     "nativescript-material-bottomnavigationbar": "^3.2.18",

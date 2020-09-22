@@ -130,12 +130,16 @@
                     this.register()
                 }
             },
-            loginGoogle() {
-                // AuthService.tnsOauthLogin("facebook")
-                // this.$navigateTo(LoginGoogle, { clearHistory: true})
-                this.$showModal(LoginGoogle, {
-                    fullscreen: true
-                })
+            async loginGoogle() {
+                try {
+                    let googleToken = await AuthService.tnsOauthLogin("google")
+                    
+                    if (googleToken != false){
+                        console.log(googleToken)       
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
             },
             async login() {
 
