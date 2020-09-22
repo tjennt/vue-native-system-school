@@ -37,7 +37,7 @@ var auth_service_1 = require("./service/auth-service");
 auth_service_1.configureOAuthProviders();
 
 // var authService = require("./service/auth-service");
-// authService.configureOAuthProviders();s
+// authService.configureOAuthProviders();
 
 Vue.config.silent = (TNS_ENV === 'production');
 
