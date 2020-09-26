@@ -36,8 +36,10 @@ import en from './assets/lang/en.json';
 var auth_service_1 = require("./service/auth-service");
 auth_service_1.configureOAuthProviders();
 
-// var authService = require("./service/auth-service");
-// authService.configureOAuthProviders();
+// Material
+// import ButtonPlugin from 'nativescript-material-button/vue';
+
+
 
 Vue.config.silent = (TNS_ENV === 'production');
 
@@ -60,12 +62,12 @@ Vue.mixin({
 
     // LOGIN SUCCESS ANS REDIRECT HOME
     redirectHome() {
-      return this.Student.Home;
+      return this.Teacher.Home;
     },
 
     // DRAWE MENU ROLEs
     drawerContent() {
-      return this.Student.DrawerContent;
+      return this.Teacher.DrawerContent;
     }
   },
   mounted() {
