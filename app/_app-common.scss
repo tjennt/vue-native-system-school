@@ -49,8 +49,13 @@
     color: const(grey);
 }
 
-.action-bar {
-    background-color: #2a4054;
+.action {
+    &-white {
+        background-color: #ffffff;
+    }
+    &-bar {
+        background-color: #2a4054;
+    }
 }
 .bg-main {
     background-color: #2a4054;
@@ -102,13 +107,15 @@
     }
 
 }
-
+.text-main {
+    color: #2a4054;
+}
 .btn {
     &-primary,
     &-success
     {
         height: 50;
-        border-radius: 15;
+        border-radius: 10;
         // font-weight: 600;
         color: #fff;
         margin: 30 5 15 5;
@@ -138,3 +145,4 @@
     padding: 2;
     // background: linear-gradient(to top, rgba(2, 250, 23, 0.219), rgba(0,0,0, 0));
 }
+

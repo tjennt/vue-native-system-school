@@ -47,19 +47,21 @@ function configureOAuthProviderMicrosoft() {
     return microsoftProvider;
 }
 function tnsOauthLogin(providerType) {
-    client = new nativescript_oauth2_1.TnsOAuthClient(providerType);
-    client.loginWithCompletion(function (tokenResult, error) {
-        if (error) {
-            console.error("back to main page with error: ");
-            console.error(error);
-            return false;
-        }
-        else {
-            console.log("back to main page with access token: ");
-            // console.log(tokenResult);
-            return tokenResult;
-        }
-    });
+    return new nativescript_oauth2_1.TnsOAuthClient(providerType);
+    
+    // client.loginWithCompletion(function (tokenResult, error) {
+        // if (error) {
+        //     console.error("back to main page with error: ");
+        //     console.error(error);
+        //     return false;
+        // }
+        // return tokenResult;
+        // // else {
+        // //     console.log("back to main page with access token: ");
+        // //     // console.log(tokenResult);
+        // //     console.log(tokenResult);
+        // // }
+    // });
 }
 exports.tnsOauthLogin = tnsOauthLogin;
 

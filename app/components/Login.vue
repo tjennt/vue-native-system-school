@@ -18,7 +18,7 @@
                             <TextField class="input" hint="Email" :isEnabled="!processing"
                                 keyboardType="email" autocorrect="false"
                                 autocapitalizationType="none" v-model="user.email"
-                                returnKeyType="next" @returnPress="focusPassword"></TextField>
+                                returnKeyType="next"></TextField>
                             <StackLayout class="hr-light"></StackLayout>
                         </StackLayout>
 
@@ -27,41 +27,19 @@
                             <TextField class="input" ref="password" :isEnabled="!processing"
                                 hint="Password" secure="true" v-model="user.password"
                                 :returnKeyType="isLoggingIn ? 'done' : 'next'"
-                                @returnPress="focusConfirmPassword"></TextField>
+                                ></TextField>
                             <StackLayout class="hr-light"></StackLayout>
-                        </StackLayout>
-
-                        <!-- IF REGISTER THEN SHOW -->
-                        <StackLayout row="2" v-show="!isLoggingIn" class="input-field">
-                            <TextField class="input" ref="confirmPassword" :isEnabled="!processing"
-                                hint="Confirm password" secure="true" v-model="user.confirmPassword"
-                                returnKeyType="done"></TextField>
-                            <StackLayout class="hr-light"></StackLayout>
-                        </StackLayout>
+                        </StackLayout>                        
                         <ActivityIndicator rowSpan="3" :busy="processing"></ActivityIndicator>
                     </GridLayout>
 
                     <!-- BUTTON LOGIN AND REGISTER -->
-                    <Button :text="isLoggingIn ? locale.buttonLogin : locale.buttonRegister" :isEnabled="!processing"
-                        @tap="submit" class="btn btn-primary fz-20 m-t-20"></Button>
-
+                    <Button :text="locale.buttonLogin" :isEnabled="!processing"
+                        @tap="login" class="btn btn-primary fz-20 m-t-20"></Button>
 
                     <!-- LOGIN GOOGLE -->
                     <Button text="GOOGLE" @tap="loginGoogle" class="btn btn-primary fz-20 m-t-20"></Button>
-
-                    <!-- FORGOT PASSWORD PROMORT  -->
-                    <Label *v-show="isLoggingIn" :text="locale.buttonForgotPassword"
-                        class="login-label" @tap="forgotPassword()"></Label>
                 </StackLayout>
-
-                <!-- DON'T REGISTER -->
-                <Label class="login-label sign-up-label" @tap="toggleForm">
-                    <FormattedString>
-                        <Span :text="isLoggingIn ? locale.buttonNoAccount : locale.buttonBackLogin "></Span>
-                        <Span :text="isLoggingIn ? locale.buttonRegister : ''" class="bold"></Span>
-                    </FormattedString>
-                </Label>
-                
             </FlexboxLayout>
         </ScrollView>
     </Page>
@@ -72,7 +50,6 @@
     import Home from "./Home";
     import HomeStudent from "./Student/Home";
     import HomeTeacher from "./Teacher/Home";
-    import LoginGoogle from "./LoginGoogle";
 
     import * as utils from "~/shared/utils";
     import * as AppSetting from "application-settings";
@@ -94,7 +71,8 @@
                     email: "tien@gmail.com",
                     password: "1",
                     confirmPassword: "1"
-                }
+                },
+                googleLogin: {}
             }
         },
         mounted() {
@@ -113,36 +91,26 @@
         },
         methods: {
              ...mapActions('auth', ['setChangeLogin', 'setToken']),
-            toggleForm() {
-                this.isLoggingIn = !this.isLoggingIn
-            },
-            submit() {
-                if (!this.user.email || !this.user.password) {
-                    this.processing = false
-                    this.errorActive = true
-                    this.errorText = "Vui lòng nhập đầy đủ thông tin"
-                    return
-                }
-                this.processing = true
-                if (this.isLoggingIn) {
-                    this.login()
-                } else {
-                    this.register()
-                }
-            },
             async loginGoogle() {
+                // let AuthService.tnsOauthLogin("google")
                 try {
-                    let googleToken = await AuthService.tnsOauthLogin("google")
+                    let thisVue = this
+                    let authLogin = await AuthService.tnsOauthLogin("google")
                     
-                    if (googleToken != false){
-                        console.log(googleToken)       
+                    if (authLogin){
+                        authLogin.loginWithCompletion(function (tokenResult, error) {
+                            thisVue.googleLogin = tokenResult
+                            console.log(tokenResult)
+                            // console.log(thisVue.googleLogin)
+                        })
                     }
+
                 } catch (error) {
                     console.log(error)
                 }
             },
             async login() {
-
+                this.processing = true;
                 // TEST DEVICE NOT HTTP
                     AppSetting.setString('token', 'loginSuccess.data.Notification.Token');
                     this.setChangeLogin(true);
@@ -176,45 +144,7 @@
                 }catch(error){
                     console.log(error)
                 }
-            },
-            register() {
-                // console.log(this.$store.state.authHeaderApi.Authorization);
-                if (this.user.password != this.user.confirmPassword) {
-                    this.alert("Xác nhận mật khẩu không đúng");
-                    this.processing = false;
-                    return;
-                }
-                this.processing = false;
-                this.alert("Đăng kí thành công.");
-                this.isLoggingIn = true;
-            },
-            forgotPassword() {
-                prompt({
-                    title: "Quên mật khẩu",
-                    message: "Nhập địa chỉ email để lấy lại mật khẩu.",
-                    inputType: "email",
-                    defaultText: "",
-                    okButtonText: "Ok",
-                    cancelButtonText: "Hủy"
-                }).then(data => {
-                    if(!data.result){
-                        return;
-                    }
-                    if (data.text.length === 0) {
-                        this.alert('Vui lòng nhập địa chỉ email')
-                    }else{
-                        this.alert('Vui lòng kiểm tra email')
-                    }
-                })
-            },
-            focusPassword() {
-                this.$refs.password.nativeView.focus()
-            },
-            focusConfirmPassword() {
-                if (!this.isLoggingIn) {
-                    this.$refs.confirmPassword.nativeView.focus()
-                }
-            },
+            },        
             alert(message) {
                 return alert({
                     title: "PROQ TEAM",

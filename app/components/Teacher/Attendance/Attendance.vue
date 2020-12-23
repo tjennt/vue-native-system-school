@@ -64,6 +64,7 @@
 </template>
 
 <script>
+    import DiaLogSuccess from '~/components/DiaLog/DiaLogSuccess';
     export default {
         mounted() {
         
@@ -156,11 +157,21 @@
                 this.data.news[index].checked = !this.data.news[index].checked;
             },           
             saveAtendance() {
-                this.isBusy = true;
+                this.isBusy = true
                 setTimeout(()=> {
-                    this.isBusy = false;
-                    alert('ĐIỂM DANH THÀNH CÔNG');
-                }, 500);
+                //     this.isBusy = false;
+                //     alert('ĐIỂM DANH THÀNH CÔNG');
+                this.$showModal(DiaLogSuccess, {
+                    props: {
+                        title: 'ĐIỂM DANH THÀNH CÔNG'
+                    },
+                    transition: {
+                        name: 'slide'
+                    }
+                })
+                this.isBusy = false
+                }, 200);
+
             }
         }
     }
