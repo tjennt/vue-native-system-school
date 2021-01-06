@@ -15,7 +15,7 @@
     "@nativescript/theme": "~2.3.0",
     "@nota/nativescript-webview-ext": "^6.5.5",
     "@vue/devtools": "^5.3.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "nativescript-material-bottomnavigationbar": "^3.3.0",
     "nativescript-oauth2": "^2.4.4",
     "nativescript-socketio": "^3.3.1",
